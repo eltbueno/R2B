@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace r2b;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
