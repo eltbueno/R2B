@@ -13,17 +13,17 @@ class CreateCidadesTable extends Migration
     public function up()
     {
         
-Schema::create('cidades', function (Blueprint $table) {
+        Schema::create('cidades', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome',30);
-            $table->unsignedInteger('estado');
+            $table->unsignedInteger('estado_id');
             $table->timestamps();
         });
         
         Schema::table('cidades', function($table)
             {
                 
-                $table->foreign('estado')->references('id')->on('estados');
+                $table->foreign('estado_id')->references('id')->on('estados');
             }               
         );
     }

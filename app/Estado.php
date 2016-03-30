@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Estado extends Model
 {
     protected $table='estados';
-    protected $fillable=['nome'];
+    protected $fillable=['nome','uf'];
     
     public function cidade(){
         
-        return $this->belongsTo(Cidade::class);
+        return $this->hasMany('r2b\Cidade');
     }
 }
