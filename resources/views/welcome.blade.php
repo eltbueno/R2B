@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Laravel 5 - Estamos on line - Equipe R2B</div>
             </div>
         </div>
     </body>
