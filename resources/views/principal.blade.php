@@ -14,7 +14,7 @@
         <nav id="menu">
             <ul>
                 <li><h1>Menu</h1></li>
-                <li><a href="/">Home</a> </li>
+                <li><a href="/principal">Home</a> </li>
                 <li><a href="/cliente">Clientes</a> </li>
                 <li><a href="/veiculo">Veiculos</a> </li>
                 <li><a href="/movimentacao">Movimentação</a> </li>
