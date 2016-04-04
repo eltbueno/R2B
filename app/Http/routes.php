@@ -17,3 +17,7 @@ Route::get('/', function () {
 Route::get('/principal', function () {
     return view('principal');
 });
+
+Route::get('/configuracao', function () {
+    return view('configuracao.configuracao');
+});
