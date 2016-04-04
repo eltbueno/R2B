@@ -17,11 +17,11 @@
 
 </script>
 
-<h2> Cadastro de Cidades</h2>
+<h2> Cadastro de Modelos de Veiculos</h2>
 <table border='1'>
     <tr>
         <td>Nome</td>
-        <td>UF/Estado</td>
+        <td>Montadora</td>
     </tr>
     <tr>
     <form method="get" action="/cid_busca">
@@ -34,6 +34,6 @@
     
     
 </table>
-@yield('cidbase')
+@yield('estbase')
 </section>
 @stop
