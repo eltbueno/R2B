@@ -26,6 +26,8 @@ Route::get('/cidade', function () {
     return view('configuracao.cidade.cidade');
 });
 
+
+
 Route::get('/estado', function () {
     return view('configuracao.estado.estado');
 });
@@ -36,6 +38,9 @@ Route::post('/estado_adiciona', 'EstadoController@adiciona');
 Route::post('/estado_atualiza','EstadoController@atualiza');
 Route::get('/estado_busca','EstadoController@busca');
 Route::get('/estado_edita','EstadoController@edita');
+
+
+
 
 Route::get('/montadora', function () {
     return view('configuracao.montadora.montadora');
