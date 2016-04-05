@@ -3,11 +3,11 @@
 @stop
 
 @section('conteudo')
-<section id='cidbase'>
+<section id='estbase'>
 <script type="text/javascript">
     function novo()
     {
-        location.href='/cid_novo';
+        location.href='/estado_novo';
     }
     
     function para()
@@ -18,21 +18,19 @@
 </script>
 
 <h2> Cadastro de Estados</h2>
-<table border='1'>
+<table border='0'>
     <tr>
-        <td>Nome</td>
-        
+        <td>Codigo</td>
+        <td>Nome</td>        
     </tr>
     <tr>
-    <form method="get" action="/cid_busca">
-        <td><input type="text" name='cid_id'</td>
-        <td><input type="text" name='cid_uf'</td>
+    <form method="get" action="/estado_busca">
+        <td><input type="text" name='id'</td>        
+        <td><input type="text" name='nome'</td>
         <td><input type='submit' value='Buscar'/></td>
-        <td><input type="button" value='Nova Cidade'onclick="novo()"></input> </td>
+        <td><input type="button" value='Novo Estado'onclick="novo()"></input> </td>
     </form>
-    </tr>
-    
-    
+    </tr>   
 </table>
 @yield('estbase')
 </section>
