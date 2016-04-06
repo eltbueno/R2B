@@ -25,7 +25,14 @@ Route::get('/configuracao', function () {
 Route::get('/cidade', function () {
     return view('configuracao.cidade.cidade');
 });
-
+Route::get('/cidade_novo', function () {
+    return view('configuracao.cidade.cidade_novo');
+});
+Route::post('/cidade_adiciona', 'CidadeController@adiciona');
+Route::post('/cidade_atualiza','CidadeController@atualiza');
+Route::get('/cidade_busca','CidadeController@busca');
+Route::get('/cidade_edita','CidadeController@edita');
+Route::get('/cidade_apaga','CidadeController@apaga');
 
 
 Route::get('/estado', function () {
