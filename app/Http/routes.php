@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('/principal', function () {
     return view('principal');
 });
+
+
 Route::get('/cliente', function () {
     return view('cliente.cliente');
 });
@@ -25,10 +27,23 @@ Route::get('/cliente_busca','ClienteController@busca');
 Route::get('/cliente_novo', function () {
     return view('cliente.cliente_novo');
 });
-
 Route::post('/cliente_adiciona','ClienteController@adiciona');
 Route::get('/cliente_edita','ClienteController@edita');
 Route::post('/cliente_atualiza','ClienteController@atualiza');
+
+
+Route::get('/veiculo', function () {
+    return view('veiculo.veiculo');
+});
+Route::get('/veiculo_busca','VeiculoController@busca');
+Route::get('/veiculo_novo', function () {
+    return view('veiculo.veiculo_novo');
+});
+Route::post('/veiculo_adiciona','VeiculoController@adiciona');
+Route::get('/veiculo_edita','VeiculoController@edita');
+Route::post('/veiculo_atualiza','VeiculoController@atualiza');
+
+
 
 
 Route::get('/configuracao', function () {

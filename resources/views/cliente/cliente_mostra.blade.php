@@ -30,7 +30,7 @@
    
         <?php    endforeach ;    }
         
-        echo"<h3>Clique no codigo do cliente para ediatar</h3>";
+        echo"<h3>Clique no codigo do cliente para editar</h3>";
         ?>
         
 </table>

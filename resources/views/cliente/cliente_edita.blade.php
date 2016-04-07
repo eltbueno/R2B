@@ -16,9 +16,7 @@
     <input name="cli_id" value="<?= $p->cli_id ?>" readonly="true"></input></br>
     <label>Nome</label>
     
-    <input name="cli_nome" value="<?= $p->cli_nome ?>" ></input></br>
-
-    
+    <input name="cli_nome" value="<?= $p->cli_nome ?>" ></input></br>   
     
     <label>Endereço</label></input>
     <input name="cli_end" value="<?= $p->cli_end ?>"></input></br>
