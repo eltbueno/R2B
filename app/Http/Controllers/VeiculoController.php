@@ -50,13 +50,28 @@ class VeiculoController extends Controller{
         $anomod = Request::input('anofab');
         $anofab = Request::input('anomod');
         $grupo = Request::input('grupo');
+        //$carro = "";
+        //$carro2 = "";
+        $carro = DB::select('select * from veiculos where placa = ?',[$placa]);
+        $carro2 = DB::select('select  * from veiculos where chassi = ?',[$chassi]);
         
+        if(!empty($carro))
+        {
+            return 'placa já existe';
+        }
+        elseif (!empty($carro2))
+        {
+            return 'chassi já existe';
+        }
+        
+        else {
         DB::insert('insert into veiculos
           (placa, chassi, renavan, anofab , anomod, grupo) 
           values (?,?,?,?,?,?)',
           array ($placa, $chassi, $renavan, $anomod,$anofab,$grupo)
           );  
          return view('/veiculo/veiculo_confirma');
+        }
         }
 
 

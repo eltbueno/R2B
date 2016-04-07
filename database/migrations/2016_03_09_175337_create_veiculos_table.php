@@ -15,7 +15,7 @@ class CreateVeiculosTable extends Migration
         Schema::create('veiculos', function (Blueprint $table) 
             {
                 $table->string('placa',7);
-                $table->string('chassi',17);
+                $table->string('chassi',17)->unique();
                 $table->string('renavan');
                 $table->string('anofab');
                 $table->string('anomod');
@@ -26,9 +26,11 @@ class CreateVeiculosTable extends Migration
         );
         Schema::table('veiculos', function($table)
             {
-                $table->primary(['placa','chassi']);
+                $table->primary(['placa']);
             }                
-        );    
+        ); 
+        
+        
         
         
     }
