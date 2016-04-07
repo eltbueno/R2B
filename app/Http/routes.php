@@ -28,7 +28,7 @@ Route::get('/cliente_novo', function () {
 
 Route::post('/cliente_adiciona','ClienteController@adiciona');
 Route::get('/cliente_edita','ClienteController@edita');
-
+Route::post('/cliente_atualiza','ClienteController@atualiza');
 
 
 Route::get('/configuracao', function () {

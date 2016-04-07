@@ -56,6 +56,6 @@ class CidadeController extends Controller{
         DB::table('cidades')
                 ->where('id', $id)
                 ->update(['nome'=>$nome,'estado_id'=>$estado]);
-        return view('/configuracao/cidade/cidade_confirma'); 
+        return view('/cliente/cliente_confirma'); 
     }
 }

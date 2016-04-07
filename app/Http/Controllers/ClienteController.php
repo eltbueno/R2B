@@ -116,11 +116,11 @@ public function atualiza(){
         
          DB::table('clientes')
                 ->where('cli_id',$id)
-                ->update(['cli_nome'=>$nome, 'cli_end'=>$endereco,'cli_end_num'=>$$numero,
+                ->update(['cli_nome'=>$nome, 'cli_end'=>$endereco,'cli_end_num'=>$numero,
                     'cli_end_com'=>$comp,'cli_bairro'=>$bairro,'cli_cidade'=>$cidade,
                     'cli_estado'=>$estado,'cli_cep'=>$cep,'cli_tel'=>$tel,'cli_obs'=>$obs,'cli_tipo'=>$tipo]);        
         
-        return "Alterado com sucesso";
+        return view('/cliente/cliente_confirma');
     }
 
 }
