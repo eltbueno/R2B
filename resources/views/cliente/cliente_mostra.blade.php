@@ -20,11 +20,12 @@
     <?php foreach ($clientes as $p):            
         ?>        
         <tr>
-        <td><input type="submit" name="cli_id" value="<?= $p->cli_id ?>" readonly="true">  </input> </td>    
+        <td><input type="submit" name="id" value="<?= $p->id ?>" readonly="true">  </input> </td>    
         <td><?= $p->cli_nome ?></td>
         <td><?= $p->cli_end ?></td>
         <td><?= $p->cli_estado ?></td>
-        <td><?= $p->cli_cidade ?></td>       
+        <td><?= $p->cli_cidade ?></td>   
+            
         
         </tr>
    

@@ -30,7 +30,7 @@ Route::get('/cliente_novo', function () {
 Route::post('/cliente_adiciona','ClienteController@adiciona');
 Route::get('/cliente_edita','ClienteController@edita');
 Route::post('/cliente_atualiza','ClienteController@atualiza');
-
+Route::get('/cliente_apaga/{id}','ClienteController@apaga');
 
 Route::get('/veiculo', function () {
     return view('veiculo.veiculo');
@@ -42,7 +42,7 @@ Route::get('/veiculo_novo', function () {
 Route::post('/veiculo_adiciona','VeiculoController@adiciona');
 Route::get('/veiculo_edita','VeiculoController@edita');
 Route::post('/veiculo_atualiza','VeiculoController@atualiza');
-
+Route::get('/veiculo_apaga/{placa}','VeiculoController@apaga');
 
 
 

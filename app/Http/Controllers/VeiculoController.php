@@ -79,5 +79,14 @@ public function atualiza(){
         
         return view('/veiculo/veiculo_confirma');
     }
+    public function apaga($placa){        
+       DB::table('veiculos')->where('placa','=',$placa)->delete();
+        
+        //$veiculo = new \r2b\Veiculo;
+        //$veiculo->find($placa)->delete();
+        return view('/veiculo/veiculo_confirma');
+    }
+    
+    
 
 }

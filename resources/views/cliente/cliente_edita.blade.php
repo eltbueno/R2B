@@ -1,6 +1,13 @@
 @extends('cliente.cliente')
 @section('conteudo')
 <h1>Edição de Cliente</h1>
+<script type="text/javascript">
+    function apaga()
+    {
+        location.href='/cliente_apaga';
+    }
+</script>
+
 
 <?php if(empty($clientes)){
         echo "<h2>Cliente não encontrado</h2>";
@@ -13,7 +20,7 @@
     
     <label>Codigo</label>   
     
-    <input name="cli_id" value="<?= $p->cli_id ?>" readonly="true"></input></br>
+    <input name="id" value="<?= $p->id ?>" readonly="true"></input></br>
     <label>Nome</label>
     
     <input required name="cli_nome" value="<?= $p->cli_nome ?>" ></input></br>   
@@ -52,8 +59,10 @@
         <option value='2'>Juridico</option>
     </select>
     
+    
     <button type="submit">Alterar</button>
     <a href="/cliente"><input type='button' value='Voltar' /></a>
+    <a href="/cliente_apaga/<?= $p->id ?>"><input type='button' value='Apagar'/></a>
    
         <?php    endforeach ;    }?>
         

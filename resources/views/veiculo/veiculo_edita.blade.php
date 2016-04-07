@@ -38,6 +38,7 @@
     
     <button type="submit">Alterar</button>
     <a href="/veiculo"><input type='button' value='Voltar' /></a>
+    <a href="/veiculo_apaga/<?= $p->placa ?>"><input type='button' value='Apagar'/></a>
    
         <?php    endforeach ;    }?>
         

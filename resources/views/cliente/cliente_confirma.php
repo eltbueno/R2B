@@ -7,7 +7,7 @@
     </head>
     <body>
         <?php
-        echo 'Cadastrado/Alterado com Sucesso!';
+        echo 'Cadastrado/Alterado/Apagado com Sucesso!';
         
         ?>
         <a href="/cliente"><input type='button' value='Voltar' /></a>

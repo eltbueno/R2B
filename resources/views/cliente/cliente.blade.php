@@ -20,7 +20,7 @@
     <tr>
     <form method="get" action="/cliente_busca">
         
-        <td><input type='codigo' name='cli_id'/></td>
+        <td><input type='codigo' name='id'/></td>
         <td><input type='text' name='cli_nome'/></td>
         
         <td><select name="cli_tipo">
