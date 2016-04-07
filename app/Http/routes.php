@@ -14,9 +14,22 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/principal', function () {
     return view('principal');
 });
+Route::get('/cliente', function () {
+    return view('cliente.cliente');
+});
+Route::get('/cliente_busca','ClienteController@busca');
+Route::get('/cliente_novo', function () {
+    return view('cliente.cliente_novo');
+});
+
+Route::post('/cliente_adiciona','ClienteController@adiciona');
+Route::get('/cliente_edita','ClienteController@edita');
+
+
 
 Route::get('/configuracao', function () {
     return view('configuracao.configuracao');
