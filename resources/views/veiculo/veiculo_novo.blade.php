@@ -6,10 +6,10 @@
     <input type="hidden" name="_token" value="{{{ csrf_token()}}}" />
     
     <label>Placa</label>
-    <input name="placa"></input></br>
+    <input  name="placa" required ></input></br>
     
     <label>Chassi</label></input>
-    <input name="chassi"></input></br>
+    <input name="chassi" required></input></br>
     
     <label>Renavan</label></input>
     <input name="renavan"></input></br>

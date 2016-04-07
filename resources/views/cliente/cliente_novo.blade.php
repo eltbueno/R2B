@@ -6,7 +6,7 @@
     <input type="hidden" name="_token" value="{{{ csrf_token()}}}" />
     
     <label>Nome</label>
-    <input name="cli_nome"></input></br>
+    <input name="cli_nome" required></input></br>
     
     <label>Endereço</label></input>
     <input name="cli_end"></input></br>
@@ -36,7 +36,7 @@
     <input name="cli_obs"></input></br>
     
     <label>Fisico/Juridico</label></input>
-    <select name="cli_tipo">
+    <select name="cli_tipo" required>
         <option value=''></option>
         <option value='1'>Fisico</option>
         <option value='2'>Juridico</option>
