@@ -13,10 +13,10 @@
     
     <label>Placa</label>   
     
-    <input name="placa" value="<?= $p->placa ?>" </input></br>
+    <input required name="placa" value="<?= $p->placa ?>" </input></br>
     <label>Chassi</label>
     
-    <input name="chassi" value="<?= $p->chassi ?>" ></input></br>   
+    <input required name="chassi" value="<?= $p->chassi ?>" ></input></br>   
     
     <label>Renavan</label></input>
     <input name="renavan" value="<?= $p->renavan ?>"></input></br>
