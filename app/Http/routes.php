@@ -83,3 +83,10 @@ Route::get('/montadora', function () {
 Route::get('/modelo', function () {
     return view('configuracao.modelo.modelo');
 });
+
+Route::get('/status', function () {
+    return view('configuracao.status.status');
+});
+Route::get('/status_novo','StatusControle@adiciona');
+Route::get('/status_busca','StatusController@busca');
+Route::get('/status_edita/{id}','StatusController@edita')->where('id','[0-9]+');

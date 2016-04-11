@@ -7,9 +7,15 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'CreateCidadesTable' => $baseDir . '/database/migrations/2016_03_27_231057_create_cidades_table.php',
+    'CreateClientesTable' => $baseDir . '/database/migrations/2016_03_09_164457_create_clientes_table.php',
     'CreateEstadosTable' => $baseDir . '/database/migrations/2016_03_27_230536_create_estados_table.php',
+    'CreateModelosTable' => $baseDir . '/database/migrations/2016_03_30_175323_create_modelos_table.php',
+    'CreateMontadorasTable' => $baseDir . '/database/migrations/2016_03_30_175312_create_montadoras_table.php',
+    'CreateMovimentacaosTable' => $baseDir . '/database/migrations/2016_04_10_021741_create_movimentacoes_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateStatusesTable' => $baseDir . '/database/migrations/2016_04_10_022319_create_statuses_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
+    'CreateVeiculosTable' => $baseDir . '/database/migrations/2016_03_09_175337_create_veiculos_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
