@@ -87,6 +87,11 @@ Route::get('/modelo', function () {
 Route::get('/status', function () {
     return view('configuracao.status.status');
 });
-Route::get('/status_novo','StatusControle@adiciona');
+Route::get('/status_novo', function () {
+    return view('configuracao.status.status_novo');
+});
+Route::post('/status_adiciona','StatusController@adiciona');
 Route::get('/status_busca','StatusController@busca');
-Route::get('/status_edita/{id}','StatusController@edita')->where('id','[0-9]+');
+Route::get('/status_edita','StatusController@edita');
+Route::post('/status_atualiza','StatusController@atualiza');
+Route::get('/status_apaga/{id}','StatusController@apaga');

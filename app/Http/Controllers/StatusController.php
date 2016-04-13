@@ -5,8 +5,8 @@ class StatusController extends Controller{
     public function adiciona(){
         $nome = Request::input('nome');
         
-        DB::insert('insert into cidades(nome,estado_id)values(?,?)', array($nome, $estado));
-        return view('/configuracao/cidade/cidade_confirma');        
+        DB::insert('insert into status(nome)values(?)', array($nome));
+        return view('/configuracao/status/status_confirma');        
         
     }
     public function busca(){
@@ -35,22 +35,29 @@ class StatusController extends Controller{
         }       
         return view('/configuracao/status/status_mostra')->withstatus($status);
     }
-    public function edita($id) //colocando a variavel aqui já recupera o valor diretamente
+    public function edita() //colocando a variavel aqui já recupera o valor diretamente
     {
-        //$id = Request::route('id');
+        $id = Request::input('id');
         //recuperando o parametro da url
-        $cidades = DB::select('select  * from cidades where id = ?',[$id]);
-        return view('configuracao/cidade/cidade_edita2')->with('cidades',$cidades);
+        $status = DB::select('select  * from status where id = ?',[$id]);
+        return view('configuracao/status/status_edita')->with('status',$status);
     }
     public function atualiza()
     {
         $id = Request::input('id');
         $nome = Request::input('nome');
-        $estado = Request::input('estado_id');
+       
         
-        DB::table('cidades')
+        DB::table('status')
                 ->where('id', $id)
-                ->update(['nome'=>$nome,'estado_id'=>$estado]);
-        return view('/cliente/cliente_confirma'); 
+                ->update(['nome'=>$nome]);
+        return view('configuracao/status/status_confirma'); 
+    }
+    public function apaga($id){        
+       DB::table('status')->where('id','=',$id)->delete();
+        
+        //$veiculo = new \r2b\Veiculo;
+        //$veiculo->find($placa)->delete();
+        return view('configuracao/status/status_confirma');
     }
 }

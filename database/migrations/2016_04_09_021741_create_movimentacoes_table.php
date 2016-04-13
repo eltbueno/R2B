@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMovimentacaosTable extends Migration
+class CreateMovimentacoesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,28 @@ class CreateMovimentacaosTable extends Migration
     {
         Schema::create('movimentacoes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('veiculo_id');
+            $table->string('placa');
+            $table->integer('km');
             $table->date('data');
-            $table->date('hora');
+            $table->datetime('hora');
             $table->integer('combustivel');
             $table->unsignedInteger('status_id');
+            $table->string('modulo');
             $table->timestamps();
         });
+        Schema::table('movimentacoes', function($table)
+            {
+                
+                $table->foreign('placa')->references('placa')->on('veiculos');
+            }               
+        );
+        Schema::table('movimentacoes', function($table)
+            {
+                
+                $table->foreign('status_id')->references('id')->on('status');
+            }               
+        );
+        
     }
 
     /**
