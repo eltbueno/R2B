@@ -95,3 +95,11 @@ Route::get('/status_busca','StatusController@busca');
 Route::get('/status_edita','StatusController@edita');
 Route::post('/status_atualiza','StatusController@atualiza');
 Route::get('/status_apaga/{id}','StatusController@apaga');
+
+Route::get('/movimentacao', 'MovimentacaoController@buscastatus');
+Route::get('/movimentacao_busca', 'MovimentacaoController@busca');
+//Route::get('/movimentacao_mostra', function()
+//  {
+//   return ; 
+//  }        
+//);
