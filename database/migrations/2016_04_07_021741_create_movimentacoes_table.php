@@ -16,11 +16,12 @@ class CreateMovimentacoesTable extends Migration
             $table->increments('id');
             $table->string('placa');
             $table->integer('km');
-            $table->date('data');
-            $table->datetime('hora');
+            $table->datetime('data_inicio');
+            $table->datetime('data_fim');
             $table->integer('combustivel');
             $table->unsignedInteger('status_id');
             $table->string('modulo');
+            $table->integer('ativo');
             $table->timestamps();
         });
         Schema::table('movimentacoes', function($table)

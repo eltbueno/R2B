@@ -10,6 +10,6 @@ class Cidade extends Model
     protected $fillable = ['nome'];
     
     public function estado(){
-        return $this->hasOne('r2b\Estado');
+        return $this->belongsTo('r2b\Estado');
     }
 }

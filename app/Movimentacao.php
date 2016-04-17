@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Movimentacao extends Model
 {
    protected $table = 'movimentacoes';
-    protected $fillable = ['km','data','hora','combustivel','modulo'];
+    protected $fillable = ['km','data_inicio','data_fim','combustivel','modulo'];
     
     public function veiculo(){
         return $this->hasOne('r2b\Veiculo');
     }
     public function status(){
-        return $this->hasOne('r2b\Status');
+        return $this->belongsTo('r2b\Status');
     }
 }

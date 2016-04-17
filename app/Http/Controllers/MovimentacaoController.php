@@ -8,29 +8,47 @@ class MovimentacaoController extends Controller{
     }
     
     public function busca (){   
-        $status2 = DB::select('select * from status');
-        
-        
+        $status2 = DB::select('select * from status');        
         $placa = Request::input('placa');        
-        $status = Request::input('status_id'); 
-        
+        $status = Request::input('status_id');         
         if ($placa != "" && $status == "" )         {
-            $mov = DB::select('select * from movimentacoes where placa = ?',[$placa]); 
-            //return $mov;
+            //$mov = DB::select('select * from movimentacoes where placa = ?',[$placa]); 
+            
+            $mov = DB::table('movimentacoes')
+                    ->where('placa','=',$placa)
+                    ->where('ativo','=','1')
+                    ->get();
         }
         else  
-        {
-         //  return $status;
-          $mov = DB::select('select * from movimentacoes where status_id = ?',[$status]); 
-          //return $mov;
+        { 
+            // buscando as movimentações, filtro por status e se esta ativo
+            $mov = \r2b\Movimentacao::whereStatus_idAndAtivo( $status, 1)->get();
+        
         } 
-        //$dados = array(
-        //         $status2, 
-        //        $mov
-        //        );
-        //($placa == "" && $status != "" )               
+                      
        return view('movimentacao.movimentacao_mostra')->with(array('mov'=>$mov,'status'=>$status2));
-       // return view('movimentacao.movimentacao_mostra',compact('mov','status'));
+       
+    }
+    
+    public function detalhe()
+    {
+        $placa = Request::input('placa');
+        $datainicio = Request::input('data_inicio');
+        $datafim = Request::input('data_fim');
+        
+        if ($datafim == "" && $datainicio == "")
+        {
+            $datafim = date('Y-m-d H:i');
+            
+            $datainicio = date('Y-m-d H:i');
+            
+            return $datafim . '<br>' . $datainicio;
+            
+            $mov = \r2b\Movimentacao::wherePlaca($placa)->get();
+        }
+        
+        //return $mov;
+        return view('movimentacao.movimentacao_detalhe')->with(array('mov'=>$mov,'placa'=>$placa));
     }
     
 }
