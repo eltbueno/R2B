@@ -12,13 +12,13 @@
         if  (placa == ""){
             alert("A Placa deve ser preenchida!");
         } else{
-        document.envia.submit();
+        document.busca1.submit();
         }
     }    
 
 </script>
 
-<form name="envia" method="get" action='/movimentacao_detalhe'>
+<form name="busca1" method="get" action='/movimentacao_detalhe'>
     <table>
     <tr>
         <td>Data Inicio </td>
@@ -26,15 +26,12 @@
         <td>Placa </td>            
     </tr>
     <tr>
-        
-        <td><input type="text" id='data_inicio' name='data_inicio' value="{{date('d/m/Y', strtotime($data_inicio))}}"</td>
-        <td><input type="text" id='data_fim' name='data_fim' value="{{date('d/m/Y', strtotime($data_fim))}}"</td>
-        <td><input type="text" id='placa' name='placa' value="{{$placa}}"</td>
+        <td><input type="text" id='data_inicio' name='data_inicio' value=""></td>
+        <td><input type="text" id='data_fim' name='data_fim' value=""></td>
+        <td><input type="text" id='placa' name='placa' value="{{$placa}}"></td>
         <td><input type="button" value='Buscar Novo'onclick="busca()"></input> </td>
     </tr>
     </table>
-    
-    
 </form>
     
 
@@ -58,11 +55,11 @@
         <tr>
             <td>{{$mov->placa}}</td>    
             <td><?php echo ($mov->status->nome);  ?></td>
-            <td><?php echo date('d/m/Y', strtotime($mov->data_inicio));  ?></td>
+            <td><?php echo  date('d-m-Y', strtotime($mov->data_inicio));  ?></td>
             <td><?php echo date('H:i', strtotime($mov->data_inicio));?></td>
             <td>
                 <?php if (!empty($mov->data_fim)){
-                echo date('d/m/Y', strtotime($mov->data_fim));}
+                echo date('d-m-Y', strtotime($mov->data_fim));}
                 ?>
             </td>
             <td>
@@ -75,10 +72,32 @@
             <td>{{$mov->km}}</td>   
             <td>{{$mov->combustivel}}</td>
             <td>{{$mov->modulo}}</td>   
-            
+             
         </tr>
         
    
         @endforeach
-</table>   
+</table> 
+<form name="novo" method="get" action='/movimentacao_novo'>
+    <div id="menu2">
+    <ul>@foreach($ativo as $ativo)
+        <li>Data <input type="text" id='data_' name='data_inicio' value="{{date('d-m-Y', strtotime($ativo->data_inicio))}}"</li>
+        <li>Hora </li>
+        <li>KM </li>
+        <li>Combustivel </li>
+        <li>Status </li>
+    @endforeach
+    </ul>
+    </div>
+    <table><tr>
+        <td></td>
+        <td><input type="text" id='data_fim' name='data_fim' value=""</td>
+        <td><input type="text" id='placa' name='placa' value="{{$placa}}"</td>
+        <td><input type="button" value='Buscar Novo'onclick="busca()"></input> </td>
+    </tr>
+    </table>
+    
+</form>
+
+ 
 @stop

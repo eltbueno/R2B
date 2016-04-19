@@ -35,7 +35,10 @@ class MovimentacaoController extends Controller{
         $placa = Request::input('placa');
         $datainicio = Request::input('data_inicio');
         $datafim = Request::input('data_fim');
-        //return $datafim . '<br>' . $datainicio; 
+        //$datainicio = date('Y-m-d H:i' ,strtotime($datainicio)) ;
+        //$datafim = date('Y-m-d H:i' ,strtotime($datafim)) ;
+        //return $datainicio . ' inicio <br> fim' . $datafim; 
+        
         if ($datafim == "" && $datainicio == "")
         {
             // pc do elton a hora esta adiantada em 3 horas
@@ -73,13 +76,15 @@ class MovimentacaoController extends Controller{
                     ->get();            
         }
         
+        $ativo = \r2b\Movimentacao::where('ativo', 1)->get();
         
         //return $mov;
         return view('movimentacao.movimentacao_detalhe')
                 ->with(array('mov'=>$mov,
                              'placa'=>$placa,
-                              'data_inicio'=>$datainicio,
-                              'data_fim'=>$datafim
+                             // 'data_inicio'=>$datainicio,
+                             // 'data_fim'=>$datafim
+                                'ativo'=>$ativo
                             ));
     }
     

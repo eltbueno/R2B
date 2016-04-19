@@ -21,7 +21,7 @@
         <ul>
             <li>{{$p->placa}}</li>    
             <li><?php echo ($p->status->nome);  ?></li>
-            <li><?php echo date('d/m/Y', strtotime($p->data_inicio));  ?></li>
+            <li><?php echo date('d-m-Y', strtotime($p->data_inicio));  ?></li>
             <li><?php echo date('H:i', strtotime($p->data_inicio));?></li>
             <li>{{$p->km}}</li>   
             <li>{{$p->combustivel}}</li>
