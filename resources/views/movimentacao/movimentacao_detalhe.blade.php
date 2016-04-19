@@ -27,8 +27,8 @@
     </tr>
     <tr>
         
-        <td><input type="text" id='data_inicio' name='data_inicio'</td>
-        <td><input type="text" id='data_fim' name='data_fim'</td>
+        <td><input type="text" id='data_inicio' name='data_inicio' value="{{date('d/m/Y', strtotime($data_inicio))}}"</td>
+        <td><input type="text" id='data_fim' name='data_fim' value="{{date('d/m/Y', strtotime($data_fim))}}"</td>
         <td><input type="text" id='placa' name='placa' value="{{$placa}}"</td>
         <td><input type="button" value='Buscar Novo'onclick="busca()"></input> </td>
     </tr>

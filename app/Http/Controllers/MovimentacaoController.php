@@ -58,6 +58,7 @@ class MovimentacaoController extends Controller{
         }elseif($datafim == "" && $datainicio != "")
         {
             $datainicio = date('Y-m-d H:i' ,strtotime($datainicio)) ; 
+            $datafim = date('Y-m-d H:i');
             //return $datainicio;
             $mov = \r2b\Movimentacao::where('placa','=',$placa)
                     ->where('data_inicio','>=',$datainicio)
@@ -68,13 +69,18 @@ class MovimentacaoController extends Controller{
             $datainicio = date('Y-m-d H:i' ,strtotime($datainicio)) ;
             $mov = \r2b\Movimentacao::where('placa','=',$placa)
                     ->where('data_inicio','>=',$datainicio)
-                    ->where('data_fim','<=',$datafim)
+                    ->where('data_inicio','<=',$datafim)
                     ->get();            
         }
         
         
         //return $mov;
-        return view('movimentacao.movimentacao_detalhe')->with(array('mov'=>$mov,'placa'=>$placa));
+        return view('movimentacao.movimentacao_detalhe')
+                ->with(array('mov'=>$mov,
+                             'placa'=>$placa,
+                              'data_inicio'=>$datainicio,
+                              'data_fim'=>$datafim
+                            ));
     }
     
 }
