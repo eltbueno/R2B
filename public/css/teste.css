@@ -69,3 +69,22 @@ body{
     border-style: solid;
     border-color: #000000;
 }
+
+#menu2{
+    display: inline;
+    width: 99.9%;
+    float: left;
+    height: 50px;
+  //  width: 1024px;
+  //  background-color: #999;
+    border-width: thin;
+    border-style: solid;
+    border-color: #000000;
+}
+#menu2 ul{
+    list-style: none;
+}
+#menu2 li{
+    float: left;
+    padding: 5px;
+}

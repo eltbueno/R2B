@@ -5,6 +5,7 @@
     <a href='/cidade'>Cidade</a>
     <a href='/modelo'>Modelo</a>
     <a href='/montadora'>Montadora</a>
+    <a href='/status'>Status</a>
     <a href='/#'>Next</a>
 </section>
 

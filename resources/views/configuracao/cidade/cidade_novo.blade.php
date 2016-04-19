@@ -10,8 +10,8 @@
     <label>Nome</label>
     
     <input name="nome"></input></br>
-    <label>Estado</label>
-    <input name="estado"></input></br>
+    <label >Estado</label>
+    <input required name="estado"></input></br>
        
     
     <button type="submit">Cadastrar</button>

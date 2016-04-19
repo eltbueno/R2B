@@ -91,3 +91,24 @@ Route::get('/montadora', function () {
 Route::get('/modelo', function () {
     return view('configuracao.modelo.modelo');
 });
+
+Route::get('/status', function () {
+    return view('configuracao.status.status');
+});
+Route::get('/status_novo', function () {
+    return view('configuracao.status.status_novo');
+});
+Route::post('/status_adiciona','StatusController@adiciona');
+Route::get('/status_busca','StatusController@busca');
+Route::get('/status_edita','StatusController@edita');
+Route::post('/status_atualiza','StatusController@atualiza');
+Route::get('/status_apaga/{id}','StatusController@apaga');
+
+Route::get('/movimentacao', 'MovimentacaoController@buscastatus');
+Route::get('/movimentacao_busca', 'MovimentacaoController@busca');
+Route::get('/movimentacao_detalhe', 'MovimentacaoController@detalhe');
+//Route::get('/movimentacao_mostra', function()
+//  {
+//   return ; 
+//  }        
+//);

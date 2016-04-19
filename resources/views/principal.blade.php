@@ -40,7 +40,7 @@
         </section>
         
                 
-        <footer id="rodape">
+        <footer class="footer" id="rodape">
             rodape da pagina
         </footer>
     </body>
