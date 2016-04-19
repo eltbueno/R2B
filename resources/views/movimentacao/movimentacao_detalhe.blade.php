@@ -1,6 +1,10 @@
 @extends('principal')
 
 @section('mostra')
+@foreach ($ativo as $p)
+{{$dataatual = $p->data_inicio}}
+@endforeach
+
 <script type="text/javascript">
     function busca()
     {
@@ -14,6 +18,18 @@
         } else{
         document.busca1.submit();
         }
+    }
+    function nova_movimentacao()
+    {
+        var placa = "{{$placa}}";        
+        var data = document.getElementById('data').value;
+        var km = document.getElementById('km').value;
+        var combustivel = document.getElementById('combustivel').value;
+        var status = document.getElementById('status').value;        
+        
+        var dataatual ="{{$dataatual}}";
+       
+      alert(dataatual + "//" + data + "//" + km  + "//" + combustivel + "//" + status);
     }    
 
 </script>
@@ -21,7 +37,7 @@
 <form name="busca1" method="get" action='/movimentacao_detalhe'>
     <table>
     <tr>
-        <td>Data Inicio </td>
+        <td>Data Inicio </td>   
         <td>Data Fim </td>
         <td>Placa </td>            
     </tr>
@@ -79,23 +95,44 @@
         @endforeach
 </table> 
 <form name="novo" method="get" action='/movimentacao_novo'>
+ <input type="text" id='placa' name='placa' value="{{$placa}}"   
     <div id="menu2">
-    <ul>@foreach($ativo as $ativo)
-        <li>Data <input type="text" id='data_' name='data_inicio' value="{{date('d-m-Y', strtotime($ativo->data_inicio))}}"</li>
-        <li>Hora </li>
-        <li>KM </li>
-        <li>Combustivel </li>
-        <li>Status </li>
-    @endforeach
+        
+    <ul>
+        @foreach($ativo as $ativo)
+        {{$dataatual = $ativo->data_inicio}}<br>
+        {{$dataatual}}
+        
+            
+        <li>Data <input type="text" id='data' name='data' value="{{date('d-m-Y', strtotime($ativo->data_inicio))}}"</li>
+        <li>Hora <input type="text" id='hora' name='hora' ></li>
+        <li>KM <input type="text" id='km' name='km' ></li>
+        
+        <li>Combustivel
+            <select id="combustivel" name="combustivel">
+                <option value=""></option>
+                <option value="0">Reserva</option>
+                <option value="1">1/4</option>
+                <option value="2">2/4</option>
+                <option value="3">3/4</option>
+                <option value="4">4/4</option>
+            </select>
+        </li>
+        <li>Status 
+            <select id='status' name='status' >
+                <option value=""></option>
+                @foreach ($status as $p)
+                <option value="{{$p->id}}">{{$p->nome}}</option>
+                @endforeach
+            </select>
+        </li>
+        @endforeach
     </ul>
     </div>
-    <table><tr>
-        <td></td>
-        <td><input type="text" id='data_fim' name='data_fim' value=""</td>
-        <td><input type="text" id='placa' name='placa' value="{{$placa}}"</td>
-        <td><input type="button" value='Buscar Novo'onclick="busca()"></input> </td>
-    </tr>
-    </table>
+    
+        
+    <input type="button" value='Incluir Movimentação'onclick="nova_movimentacao()"></input>
+    
     
 </form>
 

@@ -32,6 +32,7 @@ class MovimentacaoController extends Controller{
     
     public function detalhe()
     {
+        $status2 = DB::select('select * from status');   
         $placa = Request::input('placa');
         $datainicio = Request::input('data_inicio');
         $datafim = Request::input('data_fim');
@@ -84,7 +85,8 @@ class MovimentacaoController extends Controller{
                              'placa'=>$placa,
                              // 'data_inicio'=>$datainicio,
                              // 'data_fim'=>$datafim
-                                'ativo'=>$ativo
+                                'ativo'=>$ativo,
+                                'status'=>$status2
                             ));
     }
     
