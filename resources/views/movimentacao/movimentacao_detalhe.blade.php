@@ -2,7 +2,11 @@
 
 @section('mostra')
 @foreach ($ativo as $p)
-{{$dataatual = $p->data_inicio}}
+<?php 
+    $dataativa = date('d-m-Y H:i', strtotime($p->data_inicio));
+    $kmativo = $p->km;
+        
+  ?>
 @endforeach
 
 <script type="text/javascript">
@@ -21,15 +25,35 @@
     }
     function nova_movimentacao()
     {
-        var placa = "{{$placa}}";        
+        var placa = "{{$placa}}";  
         var data = document.getElementById('data').value;
+        var hora = document.getElementById('hora').value;
         var km = document.getElementById('km').value;
+        var km = parseInt(km);
         var combustivel = document.getElementById('combustivel').value;
-        var status = document.getElementById('status').value;        
+        var status = document.getElementById('status').value;
         
-        var dataatual ="{{$dataatual}}";
+        var novadata = data+ " " +hora;        
+        var dataativa ="{{$dataativa}}";
+        var kmativo = "{{$kmativo}}";
+        
+        //alert(kmativo+ " km novo: " + km);
        
-      alert(dataatual + "//" + data + "//" + km  + "//" + combustivel + "//" + status);
+        if (dataativa > novadata)
+        {
+            alert('A nova data não pode ser menor que a atual: ' + dataativa);
+        
+        }else
+        {
+            if (kmativo > km)
+            {
+                alert('O novo KM não pode ser menor que o atual: ' + kmativo);
+            }
+            else
+            {
+            document.novo.submit();         
+            }
+        }
     }    
 
 </script>
@@ -37,8 +61,8 @@
 <form name="busca1" method="get" action='/movimentacao_detalhe'>
     <table>
     <tr>
-        <td>Data Inicio </td>   
-        <td>Data Fim </td>
+        <td>De </td>   
+        <td>Até </td>
         <td>Placa </td>            
     </tr>
     <tr>
@@ -95,16 +119,10 @@
         @endforeach
 </table> 
 <form name="novo" method="get" action='/movimentacao_novo'>
- <input type="text" id='placa' name='placa' value="{{$placa}}"   
-    <div id="menu2">
-        
-    <ul>
-        @foreach($ativo as $ativo)
-        {{$dataatual = $ativo->data_inicio}}<br>
-        {{$dataatual}}
-        
-            
-        <li>Data <input type="text" id='data' name='data' value="{{date('d-m-Y', strtotime($ativo->data_inicio))}}"</li>
+    <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"   
+    <div id="menu2">        
+    <ul>     
+        <li>Data <input type="text" id='data' name='data' </li>
         <li>Hora <input type="text" id='hora' name='hora' ></li>
         <li>KM <input type="text" id='km' name='km' ></li>
         
@@ -126,15 +144,9 @@
                 @endforeach
             </select>
         </li>
-        @endforeach
     </ul>
     </div>
-    
-        
+   
     <input type="button" value='Incluir Movimentação'onclick="nova_movimentacao()"></input>
-    
-    
 </form>
-
- 
 @stop

@@ -10,14 +10,15 @@ class MovimentacaoController extends Controller{
     public function busca (){   
         $status2 = DB::select('select * from status');        
         $placa = Request::input('placa');        
-        $status = Request::input('status_id');         
+        $status = Request::input('status_id');  
+        
         if ($placa != "" && $status == "" )         {
             //$mov = DB::select('select * from movimentacoes where placa = ?',[$placa]); 
-            
-            $mov = DB::table('movimentacoes')
-                    ->where('placa','=',$placa)
-                    ->where('ativo','=','1')
-                    ->get();
+             $mov = \r2b\Movimentacao::wherePlacaAndAtivo( $placa, 1)->get(); 
+        //    $mov = DB::table('movimentacoes')
+        //            ->where('placa','=',$placa)
+        //            ->where('ativo','=','1')
+        //            ->get();
         }
         else  
         { 
@@ -54,10 +55,10 @@ class MovimentacaoController extends Controller{
                     ->get();            
         }elseif($datafim != "" && $datainicio == "")
         {
-            $datafim = date('Y-m-d H:i' ,strtotime($datafim.'+ 23 hours + 59 minutes')) ;            
+            $datainicio = date('Y-m-d H:i' ,strtotime($datafim.'+ 23 hours + 59 minutes')) ;            
             //return $datafim;
             $mov = \r2b\Movimentacao::where('placa','=',$placa)
-                    ->where('data_fim','<=',$datafim)
+                    ->where('data_inicio','<=',$datainicio)
                     ->get();            
         }elseif($datafim == "" && $datainicio != "")
         {
@@ -88,6 +89,36 @@ class MovimentacaoController extends Controller{
                                 'ativo'=>$ativo,
                                 'status'=>$status2
                             ));
+    }
+    
+    
+    public function novo()
+    {
+        $modulo = 'movimentacao';
+        $ativo = 1;
+        $placa = Request::input('placa');
+        $data = Request::input('data');
+        $hora = Request::input('hora');
+        $km = Request::input('km');
+        $combustivel = Request::input('combustivel');
+        $status = Request::input('status');
+        $novadata = date('Y-m-d H:i' ,strtotime($data . $hora)) ;
+        
+        DB::table('movimentacoes')
+                ->where('placa',$placa)
+                ->where('ativo',1)
+                ->update(['data_fim'=>$novadata,'ativo'=>0]);
+        
+        DB::insert('insert into movimentacoes
+                (placa,km,data_inicio,combustivel,status_id,modulo,ativo)
+                values(?,?,?,?,?,?,?)',
+                array($placa,$km,$novadata,$combustivel,$status,$modulo,$ativo)
+                );
+        
+        
+        
+        
+        return view('movimentacao.movimentacao_confirma');
     }
     
 }

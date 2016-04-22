@@ -107,8 +107,7 @@ Route::get('/status_apaga/{id}','StatusController@apaga');
 Route::get('/movimentacao', 'MovimentacaoController@buscastatus');
 Route::get('/movimentacao_busca', 'MovimentacaoController@busca');
 Route::get('/movimentacao_detalhe', 'MovimentacaoController@detalhe');
-//Route::get('/movimentacao_mostra', function()
-//  {
-//   return ; 
-//  }        
-//);
+Route::get('/movimentacao_novo', 'MovimentacaoController@novo');
+
+Route::get('/contrato', 'ContratoController@contrato');
+Route::get('/contrato_novo', 'ContratoController@novo');

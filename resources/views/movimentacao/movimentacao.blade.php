@@ -40,8 +40,8 @@
         </td>
         <td><input type="text" id='placa' name='placa'</td>
        
-        <td><input type='submit' value='Buscar'/></td>
-        <td><input type="button" value='Buscar Novo'onclick="busca()"></input> </td>
+        
+        <td><input type="button" value='Buscar'onclick="busca()"></input> </td>
     </form>
     </tr>
     
