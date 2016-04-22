@@ -19,7 +19,7 @@
         
        
         <tr>
-            <input style="display: none" type="text" id='placa' name='placa' value="{{$p->placa}}" 
+        <input style="display: none" type="text" id='placa' name='placa' value="{{$p->placa}}" ></input>
             <td>{{$p->placa}}</td>    
             <td>{{$p->status->nome}}</td>
             <td><?php echo date('d-m-Y', strtotime($p->data_inicio));  ?></td>
