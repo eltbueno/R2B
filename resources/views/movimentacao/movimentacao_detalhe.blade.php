@@ -122,8 +122,8 @@
     <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"   
     <div id="menu2">        
     <ul>     
-        <li>Data <input type="text" id='data' name='data' </li>
-        <li>Hora <input type="text" id='hora' name='hora' ></li>
+        <li>Data (dd-mm-aaa)<input type="text" id='data' name='data' </li>
+        <li>Hora (hh:mm)<input type="text" id='hora' name='hora' ></li>
         <li>KM <input type="text" id='km' name='km' ></li>
         
         <li>Combustivel
