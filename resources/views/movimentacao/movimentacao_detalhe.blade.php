@@ -61,8 +61,8 @@
 <form name="busca1" method="get" action='/movimentacao_detalhe'>
     <table>
     <tr>
-        <td>De </td>   
-        <td>Até </td>
+        <td>De (dd-mm-aaa) </td>   
+        <td>Até (dd-mm-aaa) </td>
         <td>Placa </td>            
     </tr>
     <tr>
