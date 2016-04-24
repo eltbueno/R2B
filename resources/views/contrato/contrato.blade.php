@@ -54,9 +54,10 @@
 ?> 
     <form id="editacli" name="editacli" method="get" action="contrato_edita">
         
-            <td><input type="submit" value="Editar"> </td>
+            
             <td><input name='id'value='{{$p->id}}'readonly="true"> </td>    
             <td> {{$p->cliente->cli_nome }} </td>
+            <td><input type="submit" value="Editar"> </td>
         </tr>
    </form>
  

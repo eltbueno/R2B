@@ -14,7 +14,7 @@ class CreateContratoMovimentacao extends Migration
             $table->integer('contrato_id')->unsigned();
             $table->integer('movimentacao_id')->unsigned();
             $table->integer('periodo');
-            $table->float('valor',2);
+            $table->float('valor',10,2);
             
             $table->foreign('contrato_id')
                     ->references('id')
