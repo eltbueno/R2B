@@ -8,7 +8,7 @@ class ClienteController extends Controller{
         $id = Request::input('id');        
         $nome = Request::input('cli_nome');
         $tipo = Request::input('cli_tipo');
-                   
+        $contrato = Request::input('contrato');           
         if ($id == "" && $nome == "" && $tipo == "" )
         {  
             $clientes = DB::select('select  * from clientes ');             
@@ -61,7 +61,15 @@ class ClienteController extends Controller{
                 ->get();                                      
         }           
             
-        return view('cliente/cliente_mostra')->with('clientes',$clientes);
+        if ($contrato == "")
+        {
+            return view('cliente/cliente_mostra')->with('clientes',$clientes);
+        }
+        else
+        {
+            return view('contrato.busca_cli')->with('clientes',$clientes);
+        }
+        
         
         
     }

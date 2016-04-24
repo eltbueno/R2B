@@ -15,12 +15,12 @@ class ContratoController extends Controller{
         //incluir uma função aqui para verificar os valores, depois faz a busca
                 
         $id = Request::input('id');        
-        $nome = Request::input('cli_nome');
-        $tipo = Request::input('cli_tipo');
+        $cli_id = Request::input('cliente_id');
+        $cli_nome = Request::input('cliente_nome');
                    
-        if ($id == "" && $nome == "" && $tipo == "" )
+        if ($id == "" && $cli_id == "" && $cli_nome == "" )
         {  
-            $clientes = DB::select('select  * from clientes ');             
+            $contratos = \r2b\Contrato::All();            
         }      
         elseif ($id != "" && $nome == "" && $tipo == "" ) 
         {
@@ -70,7 +70,7 @@ class ContratoController extends Controller{
                 ->get();                                      
         }           
             
-        return view('cliente/cliente_mostra')->with('clientes',$clientes);
+        return view('contrato.contrato')->with('contratos',$contratos);
         
         
     }
@@ -78,31 +78,43 @@ class ContratoController extends Controller{
     public function edita()
         {
         $id = Request::input('id'); 
-        $clientes = DB::select('select  * from clientes where id = ?',[$id]);
+        $contrato = \r2b\Contrato::whereId($id)->get();
+        $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($id)->get();
+        //$veiculos = DB::table('contrato_movimenta')
+                //->where('contrato_id','=',$id)
+                //->get();
         //return  $id;
-        return view('cliente/cliente_edita')->with('clientes',$clientes);
+        return view('contrato.contrato_edita')->with(array('contrato'=>$contrato,'veiculos'=>$veiculos));
         }
 
 
     
     public function adiciona(){       
-        $nome = Request::input('cli_nome');
-        $endereco = Request::input('cli_end');
-        $numero = Request::input('cli_end_num');
-        $comp = Request::input('cli_end_com');
-        $bairro = Request::input('cli_bairro');
-        $cidade = Request::input('cli_cidade');
-        $estado = Request::input('cli_estado');
-        $cep = Request::input('cli_cep');
-        $tel = Request::input('cli_tel');
-        $obs = Request::input('cli_obs');
-        $tipo = Request::input('cli_tipo');        
-        DB::insert('insert into clientes
-          (cli_nome, cli_end,cli_end_num,cli_end_com,cli_bairro,cli_cidade,cli_estado,cli_cep,cli_tel,cli_obs,cli_tipo) 
-          values (?,?,?,?,?,?,?,?,?,?,?)',
-          array ($nome, $endereco, $numero, $comp,$bairro,$cidade,$estado,$cep,$tel,$obs,$tipo)
-          );  
-         return view('/cliente/cliente_confirma');
+        $tipo = Request::input('tipo');
+        $user = Request::input('user_id');
+        $cliente = Request::input('cliente_id');
+        $vigencia = Request::input('vigencia');
+        $taxaadmin = Request::input('taxaadmin');
+        $taxamulta = Request::input('taxamulta');
+        $vencimento = Request::input('vencimento');
+        $vigencia = date('Y-m-d' ,strtotime($vigencia)) ;
+        
+        $id = DB::table('contratos')->insertGetId
+        (
+            [
+                'tipo'=>$tipo,
+                'user_id'=>$user,    
+                'cliente_id'=>$cliente,
+                'vigencia'=>$vigencia,
+                'taxaadmin'=>$taxaadmin,
+                'taxamulta'=>$taxamulta,
+                'vencimento'=>$vencimento
+            ]
+        );
+          
+        $contrato = DB::select('select  * from contratos where id = ?',[$id]);
+        
+        return view('contrato.contrato_edita')->with('contrato',$contrato);
         }
 
 
@@ -111,31 +123,106 @@ class ContratoController extends Controller{
 public function atualiza(){
         
         $id = Request::input('id');
-        $nome = Request::input('cli_nome');
-        $endereco = Request::input('cli_end');
-        $numero = Request::input('cli_end_num');
-        $comp = Request::input('cli_end_com');
-        $bairro = Request::input('cli_bairro');
-        $cidade = Request::input('cli_cidade');
-        $estado = Request::input('cli_estado');
-        $cep = Request::input('cli_cep');
-        $tel = Request::input('cli_tel');
-        $obs = Request::input('cli_obs');
-        $tipo = Request::input('cli_tipo');        
+        $tipo = Request::input('tipo');
+        $user = Request::input('user_id');
+        $cliente = Request::input('cliente_id');
+        $vigencia = Request::input('vigencia');
+        $taxaadmin = Request::input('taxaadmin');
+        $taxamulta = Request::input('taxamulta');
+        $vencimento = Request::input('vencimento');
+        $vigencia = date('Y-m-d' ,strtotime($vigencia)) ;
         
-         DB::table('clientes')
-                ->where('id',$id)
-                ->update(['cli_nome'=>$nome, 'cli_end'=>$endereco,'cli_end_num'=>$numero,
-                    'cli_end_com'=>$comp,'cli_bairro'=>$bairro,'cli_cidade'=>$cidade,
-                    'cli_estado'=>$estado,'cli_cep'=>$cep,'cli_tel'=>$tel,'cli_obs'=>$obs,'cli_tipo'=>$tipo]);        
+        \r2b\Contrato::where('id',$id)
+            ->update(
+            [
+                'tipo'=>$tipo,
+                'user_id'=>$user,    
+                'cliente_id'=>$cliente,
+                'vigencia'=>$vigencia,
+                'taxaadmin'=>$taxaadmin,
+                'taxamulta'=>$taxamulta,
+                'vencimento'=>$vencimento
+            ]
+            );
+          
+        $contrato = DB::select('select  * from contratos where id = ?',[$id]);
         
-        return view('/cliente/cliente_confirma');
-    }
+        return view('contrato.contrato_edita')->with('contrato',$contrato);
+        }
+    
     
     public function apaga($id){        
         $cliente = new \r2b\Cliente;
         $cliente->find($id)->delete();
         return view('/cliente/cliente_confirma');
+    }
+    public function veiculo($id)
+    {
+        
+        $status = \r2b\Status::whereNome('Disponivel')->get();
+        foreach($status as $p)
+        //return $p->id;
+        {
+        $veiculos = \r2b\Movimentacao::whereStatus_idAndAtivo( $p->id, 1)->get();
+        }
+        return view('contrato.contrato_veiculo')->with(array('veiculos'=>$veiculos,'id'=>$id));
+    }
+    public function salvacarro()
+    {
+        $modulo = 'contrato';
+        $ativo = 1;
+        // arrumar o status, busca no banco pelo nome e retorna o id
+        $status = 2;
+        //preciso do numero do contrato
+        $contratoid = Request::input('contratoid') ;
+        $placa = Request::input('placa');
+        $periodo = Request::input('periodo');
+        $valor = Request::input('valor');
+        $data = Request::input('data');
+        $hora = Request::input('hora');
+        $km = Request::input('km');
+        $combustivel = Request::input('combustivel');
+        $novadata = date('Y-m-d H:i' ,strtotime($data . $hora)) ;
+        
+        //return $valor;
+        
+        //DB::table('movimentacoes')
+        //        ->where('placa',$placa)
+        //        ->where('ativo',1)
+        //        ->update(['data_fim'=>$novadata,'ativo'=>0]);
+        
+        \r2b\Movimentacao::where('placa',$placa)
+            ->where('ativo',1)
+            ->update(
+            [
+                'data_fim'=>$novadata,
+                'ativo'=> 0
+            ]
+            );
+        $movid = DB::table('movimentacoes')->insertGetId
+        (
+            [
+                'placa'=>$placa,
+                'km'=>$km,    
+                'data_inicio'=>$novadata,
+                'combustivel'=>$combustivel,
+                'status_id'=>$status,
+                'modulo'=>$modulo,
+                'ativo'=>$ativo
+            ]
+        );
+        DB::insert('insert into contrato_movimenta
+                (contrato_id,movimentacao_id,periodo,valor)
+                values(?,?,?,?)',
+                array($contratoid,$movid,$periodo,$valor)
+                );
+        $con_mov = DB::table('contrato_movimenta')
+                ->where('contrato_id','=',$contratoid)
+                //->where('movimentacao_id',$movid)
+                
+                ->get();  
+        
+        return 'tudo certo até aqui';
     }
 
 }

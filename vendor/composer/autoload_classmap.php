@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'CreateCidadesTable' => $baseDir . '/database/migrations/2016_03_27_231057_create_cidades_table.php',
     'CreateClientesTable' => $baseDir . '/database/migrations/2016_03_09_164457_create_clientes_table.php',
+    'CreateContratoMovimentacao' => $baseDir . '/database/migrations/2016_04_24_052706_create_contrato_movimentacao.php',
     'CreateContratosTable' => $baseDir . '/database/migrations/2016_04_22_044336_create_contratos_table.php',
     'CreateEstadosTable' => $baseDir . '/database/migrations/2016_03_27_230536_create_estados_table.php',
     'CreateKmsTable' => $baseDir . '/database/migrations/2016_03_11_010536_create_kms_table.php',

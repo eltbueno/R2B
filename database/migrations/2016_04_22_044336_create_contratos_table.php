@@ -14,10 +14,26 @@ class CreateContratosTable extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cliente_id');
-            $table->integer('mov_id');
+            $table->integer('tipo');
+            $table->date('vigencia');
+            $table->float('taxaadmin');
+            $table->string('taxamulta');
+            $table->integer('vencimento');
+            $table->unsignedInteger('cliente_id');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
         });
+        Schema::table('contratos', function ($table)
+            {
+                $table->foreign('cliente_id')->references('id')->on('clientes');
+            }   
+        );
+        
+        Schema::table('contratos', function($table)
+            {
+                $table->foreign('user_id')->references('id')->on('users');
+            }      
+        );
     }
 
     /**

@@ -111,3 +111,13 @@ Route::get('/movimentacao_novo', 'MovimentacaoController@novo');
 
 Route::get('/contrato', 'ContratoController@contrato');
 Route::get('/contrato_novo', 'ContratoController@novo');
+Route::post('/contrato_adiciona', 'ContratoController@adiciona');
+Route::get('/contrato_busca', 'ContratoController@busca');
+Route::get('/contrato_edita', 'ContratoController@edita');
+Route::post('/contrato_atualiza', 'ContratoController@atualiza');
+Route::get('/contrato_veiculo/{id}', 'ContratoController@veiculo');
+Route::post('/contrato_veiculo/salva', 'ContratoController@salvacarro');
+Route::get('/busca_cli', function () 
+{
+    return view('contrato.busca_cli');
+});
