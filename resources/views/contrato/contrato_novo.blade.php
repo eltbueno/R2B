@@ -23,7 +23,7 @@
     </br>
     
     <label>Vendedor (código)</label></input>
-    <input name="user_id"></br>
+    <input name="user_id"><label>Digite 1 aqui</label></br>
     
     <label>Cód Cliente</label></input>
     <input required id="cliente_id" name="cliente_id"></br>
