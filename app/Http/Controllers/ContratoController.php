@@ -172,8 +172,12 @@ public function atualiza(){
         $modulo = 'contrato';
         $ativo = 1;
         // arrumar o status, busca no banco pelo nome e retorna o id
-        $status = 2;
-        //preciso do numero do contrato
+        
+        $status = \r2b\Status::whereNome('locado')->get();
+        foreach($status as $p)
+        {
+            $statusid = $p->id;
+        }
         $contratoid = Request::input('contratoid') ;
         $placa = Request::input('placa');
         $periodo = Request::input('periodo');
@@ -206,7 +210,7 @@ public function atualiza(){
                 'km'=>$km,    
                 'data_inicio'=>$novadata,
                 'combustivel'=>$combustivel,
-                'status_id'=>$status,
+                'status_id'=>$statusid,
                 'modulo'=>$modulo,
                 'ativo'=>$ativo
             ]
