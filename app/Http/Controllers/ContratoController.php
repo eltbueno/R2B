@@ -174,10 +174,12 @@ public function atualiza(){
         // arrumar o status, busca no banco pelo nome e retorna o id
         
         $status = \r2b\Status::whereNome('locado')->get();
+        //return $status;
         foreach($status as $p)
         {
             $statusid = $p->id;
         }
+        //return $statusid;
         $contratoid = Request::input('contratoid') ;
         $placa = Request::input('placa');
         $periodo = Request::input('periodo');
@@ -190,10 +192,7 @@ public function atualiza(){
         
         //return $valor;
         
-        //DB::table('movimentacoes')
-        //        ->where('placa',$placa)
-        //        ->where('ativo',1)
-        //        ->update(['data_fim'=>$novadata,'ativo'=>0]);
+        
         
         \r2b\Movimentacao::where('placa',$placa)
             ->where('ativo',1)
@@ -222,11 +221,27 @@ public function atualiza(){
                 );
         $con_mov = DB::table('contrato_movimenta')
                 ->where('contrato_id','=',$contratoid)
-                //->where('movimentacao_id',$movid)
-                
-                ->get();  
+                ->get(); 
         
-        return 'tudo certo até aqui';
+        
+        //return 'tudo certo até aqui';
+        $contrato = \r2b\Contrato::whereId($contratoid)->get();
+        $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($contratoid)->get();
+        
+        $id = $contratoid;
+        
+        return redirect()->action('ContratoController@edita', ['id'=>$id]);
+        
+        //return redirect('/contrato_edita/{$id}');
+        //        ->with(array
+        //(
+        //    'contrato'=>$contrato,
+        //    'veiculos'=>$veiculos
+        //));
+        //return view('\contrato.contrato_edita')->with(array('contrato'=>$contrato,'veiculos'=>$veiculos));
+        
+        
+        
     }
 
 }
