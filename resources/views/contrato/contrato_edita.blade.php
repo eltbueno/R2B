@@ -136,6 +136,13 @@
                 </td>
                 <td>{{$p->movimentacao->kmfim}}</td>
                 <td>{{$p->movimentacao->combustivelfim}}</td>
+                
+                <td>
+                    <form action="contrato_retira" method="get">
+                        <input type="hidden" name="placa" value="{{$p->movimentacao->placa}}">
+                        <input type='submit' value='Excluir'/>
+                    </form>
+                </td>
             </tr>
             
             

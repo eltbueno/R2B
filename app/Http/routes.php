@@ -117,6 +117,7 @@ Route::get('/contrato_edita', 'ContratoController@edita');
 Route::post('/contrato_atualiza', 'ContratoController@atualiza');
 Route::get('/contrato_veiculo/{id}', 'ContratoController@veiculo');
 Route::post('/contrato_veiculo/salva', 'ContratoController@salvacarro');
+Route::get('/contrato_retira', 'ContratoController@retiracarro');
 Route::get('/busca_cli', function () 
 {
     return view('contrato.busca_cli');

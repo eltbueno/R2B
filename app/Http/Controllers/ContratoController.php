@@ -246,5 +246,10 @@ public function atualiza(){
         
         
     }
+    public function retiracarro()
+    {
+        $id = Request::input('placa');
+        return  $id;
+    }
 
 }
