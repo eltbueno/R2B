@@ -22,6 +22,8 @@ class CreateMovimentacoesTable extends Migration
             $table->unsignedInteger('status_id');
             $table->string('modulo');
             $table->integer('ativo');
+            $table->integer('kmfim');
+            $table->integer('combustivelfim');
             $table->timestamps();
         });
         Schema::table('movimentacoes', function($table)

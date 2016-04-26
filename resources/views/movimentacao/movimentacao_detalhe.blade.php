@@ -3,8 +3,8 @@
 @section('mostra')
 @foreach ($ativo as $p)
 <?php 
-    $dataativa = date('d-m-Y H:i', strtotime($p->data_inicio));
-    $kmativo = $p->km;
+    echo $dataativa = date('d-m-Y H:i', strtotime($p->data_inicio));
+    echo $kmativo = $p->km;
         
   ?>
 @endforeach
@@ -89,7 +89,10 @@
             <td> Módulo       </td>
         </tr>
       
+        
         @foreach($mov as $mov)
+        
+        
         
        
         <tr>

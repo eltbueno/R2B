@@ -48,11 +48,14 @@ class MovimentacaoController extends Controller{
             // procurar depois acertar no pc
             // busca abaixo retorna as movimentações de 3 meses atras da placa especificada
             $datafim = date('Y-m-d H:i');            
-            $datainicio = date('Y-m-d H:i' ,strtotime($datafim. '- 90 days')) ;            
+            $datainicio = date('Y-m-d H:i' ,strtotime($datafim. '- 365 days')) ;            
             //return $datafim . '<br>' . $datainicio;            
+            
+            //$mov = \r2b\Movimentacao::wherePlacaAndData_inicio($placa,'>=',$datainicio)->get();
             $mov = \r2b\Movimentacao::where('placa','=',$placa)
                     ->where('data_inicio','>=',$datainicio)
-                    ->get();            
+                    ->get(); 
+            //return $mov;
         }elseif($datafim != "" && $datainicio == "")
         {
             $datainicio = date('Y-m-d H:i' ,strtotime($datafim.'+ 23 hours + 59 minutes')) ;            
@@ -78,7 +81,7 @@ class MovimentacaoController extends Controller{
                     ->get();            
         }
         
-        $ativo = \r2b\Movimentacao::where('ativo', 1)->get();
+        $ativo = \r2b\Movimentacao::whereAtivoAndPlaca(1, $placa)->get();
         
         //return $mov;
         return view('movimentacao.movimentacao_detalhe')
@@ -107,7 +110,12 @@ class MovimentacaoController extends Controller{
         DB::table('movimentacoes')
                 ->where('placa',$placa)
                 ->where('ativo',1)
-                ->update(['data_fim'=>$novadata,'ativo'=>0]);
+                ->update([
+                    'data_fim'=>$novadata,
+                    'ativo'=>0,
+                    'kmfim'=>$km,
+                    'combustivelfim'=>$combustivel
+                    ]);
         
         DB::insert('insert into movimentacoes
                 (placa,km,data_inicio,combustivel,status_id,modulo,ativo)

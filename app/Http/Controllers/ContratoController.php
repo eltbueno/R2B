@@ -164,6 +164,7 @@ public function atualiza(){
         //return $p->id;
         {
         $veiculos = \r2b\Movimentacao::whereStatus_idAndAtivo( $p->id, 1)->get();
+         //return $veiculos;
         }
         return view('contrato.contrato_veiculo')->with(array('veiculos'=>$veiculos,'id'=>$id));
     }
@@ -199,7 +200,9 @@ public function atualiza(){
             ->update(
             [
                 'data_fim'=>$novadata,
-                'ativo'=> 0
+                'ativo'=> 0,
+                'kmfim'=>$km,
+                'combustivelfim'=>$combustivel
             ]
             );
         $movid = DB::table('movimentacoes')->insertGetId

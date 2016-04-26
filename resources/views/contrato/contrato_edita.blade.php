@@ -108,20 +108,34 @@
                 <td>Data</td>
                 <td>Hora</td>
                 <td>KM</td>
+                <td>Combustivel</td>
             </tr>
             @if(!empty($veiculos))
             @foreach ($veiculos as $p)
             <tr>
                 <td>{{$p->movimentacao->placa}}</td>
-                <td>{{$p->movimentacao->data_inicio}}</td>
-                <td>{{$p->movimentacao->data_inicio}}</td>
+                <td>{{date('d-m-Y',strtotime($p->movimentacao->data_inicio))}}</td>
+                
+                <td>{{date('H:i',strtotime($p->movimentacao->data_inicio))}}</td>
                 <td>{{$p->movimentacao->km}}</td>
                 <td>{{$p->movimentacao->combustivel}}</td>
                 <td>{{$p->periodo}}</td>
                 <td>{{$p->valor}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>    
+                    <?php if (!empty($mov->data_fim)){
+                            echo date('d-m-Y', strtotime($mov->data_fim));}
+                    ?>
+                </td>
+                <td>
+                    @if(!empty($p->movimentacao->data_fim))
+                    
+                    {{date('H:i',strtotime($p->movimentacao->data_fim))}}
+                    
+                    @else
+                    @endif
+                </td>
+                <td>{{$p->movimentacao->kmfim}}</td>
+                <td>{{$p->movimentacao->combustivelfim}}</td>
             </tr>
             
             

@@ -55,6 +55,10 @@ class VeiculoController extends Controller{
         $carro = DB::select('select * from veiculos where placa = ?',[$placa]);
         $carro2 = DB::select('select  * from veiculos where chassi = ?',[$chassi]);
         
+        //$datateste = '2016-01-01 08:00';
+        //return $datateste;
+        
+        
         if(!empty($carro))
         {
             return 'placa já existe';
@@ -69,7 +73,19 @@ class VeiculoController extends Controller{
           (placa, chassi, renavan, anofab , anomod, grupo) 
           values (?,?,?,?,?,?)',
           array ($placa, $chassi, $renavan, $anomod,$anofab,$grupo)
-          );  
+          );
+        
+        
+        $movimentacao = new \r2b\Movimentacao;
+        $movimentacao->placa = $placa;
+        $movimentacao->modulo = 'veiculo';
+        $movimentacao->ativo = 1;
+        $movimentacao->data_inicio = '2016-01-01 08:00';
+        $movimentacao->km = 0;
+        $movimentacao->combustivel = 0;
+        $movimentacao->status_id =1;
+        $movimentacao->save();
+        
          return view('/veiculo/veiculo_confirma');
         }
         }
