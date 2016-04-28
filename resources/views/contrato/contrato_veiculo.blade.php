@@ -80,6 +80,10 @@ Inserir Veiculo no Contrato Numero: {{$id}}
                 
                 </td>
                 <td><input size="10"type="text" name="valor" id="valor"></td>
+                <!--
+                a placa no id dos campos serve para mandar para o javascript
+                e diferenciar os dados na hora de mandar gravar 
+                -->
                 <td><input size="10"type="text" name="data" id="data{{$p->placa}}"></td>                
                 <td><input size="10"type="text" name="hora" id="hora{{$p->placa}}"></td>
                 <td><input size="10"type="text" name="km" id="km{{$p->placa}}"></td>                
