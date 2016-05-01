@@ -2,6 +2,10 @@
 use Illuminate\Support\Facades\DB;
 use Request;
 class ContratoController extends Controller{
+    public function __construct() {
+        $this->middleware('auth');
+        
+    }
     public function contrato()
     {
         return view('contrato.contrato');

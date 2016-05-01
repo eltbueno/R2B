@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>R2B System - Locações</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">R2B System<br><a href="/principal">Clique Aqui Para Entrar</a></div>
+                <div class="title">R2B System<br><a href="/auth/login">Clique Aqui Para Entrar</a></div>
             </div>
         </div>
     </body>

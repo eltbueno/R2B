@@ -7,22 +7,12 @@ use Validator;
 use r2b\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
+use Illuminate\Http\Request;
+use Auth;
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
-
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
+    
     /**
      * Create a new authentication controller instance.
      *
@@ -33,33 +23,49 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+    public function postRegister(Request $request) {
+        //return 'aqui deu certo';
+        $user = new User;
+        
+        $user->nome = $request->nome;
+        $user->perfil = $request->perfil;
+        $user->login = $request->login;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->remember_token = str_random(100);
+        $user->save();
+        
+        return redirect('usuario_novo')
+            ->with("message","Registrado com Sucesso");
+        
     }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
+    
+    
+    public function postLogin(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        //foreach ($request as $p)
+        //    return $request->password;
+        
+        
+        if(Auth::attempt(
+                //return "ate aqui veio";
+                
+                [
+                    'login'=>$request->login,
+                    'password'=>$request->password
+                ]
+                ))
+        {
+            //return "ok";
+            //return redirect()->intended($this->redirectPath());
+            return redirect()->to('principal');
+        }
+        else
+        {
+           // $validacao = Validator::make($request->all());
+            //return redirect('auth/login');
+            return "erro ao logar";
+        }
+        
     }
 }

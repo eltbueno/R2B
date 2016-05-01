@@ -2,6 +2,11 @@
 use Illuminate\Support\Facades\DB;
 use Request;
 class MovimentacaoController extends Controller{
+    
+    public function __construct() {
+        $this->middleware('auth');
+        
+    }
     public function buscastatus(){
         $status = DB::select('select * from status'); 
         return view('movimentacao.movimentacao')->with('status',$status);

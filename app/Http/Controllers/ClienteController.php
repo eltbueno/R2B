@@ -2,6 +2,10 @@
 use Illuminate\Support\Facades\DB;
 use Request;
 class ClienteController extends Controller{
+    public function __construct() {
+        $this->middleware('auth');
+        
+    }
     public function busca (){        
         //incluir uma função aqui para verificar os valores, depois faz a busca
                 

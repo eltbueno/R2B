@@ -1,14 +1,23 @@
 <html>
     <head>
-        <link href="css/teste.css" rel="stylesheet">
-        <link href="css/app.css" rel="stylesheet">
+        <link href="css/r2b.css" rel="stylesheet">
+        
+        
         <title>R2B System - Locações</title> 
     </head>
     
     <body >
         
         <div id="topo">
-            Topo da pagina
+            <ul>
+                @if (Auth::check())
+                    <li><a href="{{url()}}"> {{Auth::user()->nome}} </a> </li>
+                    <li><a href="{{url('auth/logout')}}"> SAIR</a></li>
+
+                @else
+                    <li><a href="{{url('auth/login')}}"> Logar</a></li>
+                @endif
+            </ul>
         </div>
         
         <nav id="menu">
@@ -20,6 +29,7 @@
                 <li><a href="/movimentacao">Movimentação</a> </li>
                 <li><a href="/contrato">Contratos</a> </li>
                 <li><a href="/configuracao">Configurações</a> </li>
+                <li><a href="/usuario">Usuários</a> </li>
                 
                 
             </ul>              
@@ -33,6 +43,9 @@
             
             @yield('conteudo')
             
+        </section>
+        <section id="user" class="container">
+            @yield('user')
         </section>
      
         <section id="mostra">

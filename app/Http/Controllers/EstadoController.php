@@ -2,6 +2,10 @@
 use Illuminate\Support\Facades\DB;
 use Request;
 class EstadoController extends Controller{
+    public function __construct() {
+        $this->middleware('auth');
+        
+    }
     public function adiciona(){
         $nome = Request::input('nome');
         DB::insert('insert into estados(nome)values(?)', array($nome));

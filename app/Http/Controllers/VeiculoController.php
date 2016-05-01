@@ -2,6 +2,10 @@
 use Illuminate\Support\Facades\DB;
 use Request;
 class VeiculoController extends Controller{
+    public function __construct() {
+        $this->middleware('auth');
+        
+    }
     public function busca (){        
                      
         $placa = Request::input('placa');        

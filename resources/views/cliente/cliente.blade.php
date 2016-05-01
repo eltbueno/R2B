@@ -32,10 +32,6 @@
         </td>
         <td><input type='submit' value='Buscar'/></td>
         <td><input type="button" value='Novo Cliente'onclick="novo()"></input> </td>
-        
-        
-       
-        
         </form>
     </tr>
     

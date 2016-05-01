@@ -1,7 +1,14 @@
-<?php namespace r2b\Http\Controllers;
+<?php
+
+namespace r2b\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Request;
 class CidadeController extends Controller{
+    public function __construct() {
+        $this->middleware('auth');
+        
+    }
+    
     public function adiciona(){
         $nome = Request::input('nome');
         $estado = Request::input('estado');

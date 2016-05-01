@@ -1,9 +1,11 @@
-<form method="POST" action="/principal">
+<!-- resources/views/auth/login.blade.php -->
+
+<form method="POST" action="/auth/login">
     {!! csrf_field() !!}
 
     <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
+        login
+        <input type="text" name="login" value="{{ old('login') }}">
     </div>
 
     <div>

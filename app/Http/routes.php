@@ -10,22 +10,37 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
-
-
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/principal', function () {
-    return view('principal');
+
+
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('/usuario_novo', 'UserController@user');
+Route::post('/usuario_salva', 'UserController@salva');
+Route::get('/auth/register', 'Auth\AuthController@getRegister');
+Route::post('/auth/register', 'Auth\AuthController@postRegister');
+
+
+Route::post('/usuario_busca', 'UserController@busca');
+Route::get('/usuario', function () {
+    return view('auth.usuario');
 });
+
+
+
+
+Route::get('/principal', 'UserController@principal');
+//Route::get('/principal', function () {
+//    return view('principal');
+//});
 
 
 Route::get('/cliente', function () {
