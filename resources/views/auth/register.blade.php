@@ -9,7 +9,7 @@
 @endif
 </div>
 
-<form method="POST" action="/auth/register">
+<form method="POST" action="/usuario_salva">
     {!! csrf_field() !!}
 
     <div class="col-md-6">
