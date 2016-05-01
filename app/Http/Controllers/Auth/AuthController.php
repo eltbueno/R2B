@@ -34,7 +34,7 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->remember_token = str_random(100);
         $user->save();
-        
+        return 'aqui deu certo';
         return redirect('usuario_novo')
             ->with("message","Registrado com Sucesso");
         
