@@ -92,6 +92,7 @@
 <form method="get" action="contrato_veiculo">
         <label readonly="true" name="id" value=''>
         <a href="/contrato_veiculo/{{$id}}"><input type='button' value='Novo Veiculo2'/></a>
+</form>  
         <table border='1'>
             <tr>
                 <td colspan="7">Dados Entrada</td>
@@ -152,7 +153,7 @@
         </table>
         
         
-    </form>    
+      
 </div>
 
 

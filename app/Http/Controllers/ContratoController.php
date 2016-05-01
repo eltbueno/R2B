@@ -255,10 +255,14 @@ public function atualiza(){
         $contrato = Request::input('contrato');
         $movimentacao = Request::input('movimentacao');
         
+        //return $contrato;       
+        $mov = \r2b\Movimentacao::whereId($movimentacao)->get();
+        foreach ($mov as $p)
+        {
+         $placa = $p->placa;
+        }
         
-        //$apagar = \r2b\Contrato_Movimenta::whereContrato_idAndMovimentacao_id($contrato, $movimentacao)->get();
-        
-        //return  $apagar;
+        //return $placa;
         DB::table('contrato_movimenta')
                 ->where('contrato_id', '=', $contrato)
                 ->where('movimentacao_id', '=', $movimentacao)  
@@ -266,6 +270,25 @@ public function atualiza(){
         
         $movapag = new \r2b\Movimentacao;
         $movapag->find($movimentacao)->delete();
+        
+        $movmuda = \r2b\Movimentacao::wherePlaca($placa)->get();
+        foreach ($movmuda as $movmuda)
+        {
+            $id = $movmuda->id;
+        }
+        
+        //return $id;
+        DB::table('movimentacoes')
+                ->where('id',$id)
+                
+                ->update([
+                    'data_fim'=>"",
+                    'ativo'=>1,
+                    'kmfim'=>"",
+                    'combustivelfim'=>""
+                    ]);
+        
+        //$novmuda 
         return view('/cliente/cliente_confirma');
     }
 
