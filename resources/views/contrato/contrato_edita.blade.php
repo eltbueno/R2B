@@ -139,7 +139,8 @@
                 
                 <td>
                     <form action="contrato_retira" method="get">
-                        <input type="hidden" name="placa" value="{{$p->movimentacao->placa}}">
+                        <input type="hidden" name="movimentacao" id="movimentacao" value="{{$p->movimentacao->id}}">
+                        <input type="hidden" name="contrato" id="contrato" value="{{$id}}">
                         <input type='submit' value='Excluir'/>
                     </form>
                 </td>

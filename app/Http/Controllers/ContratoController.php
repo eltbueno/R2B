@@ -252,8 +252,21 @@ public function atualiza(){
     }
     public function retiracarro()
     {
-        $id = Request::input('placa');
-        return  $id;
+        $contrato = Request::input('contrato');
+        $movimentacao = Request::input('movimentacao');
+        
+        
+        //$apagar = \r2b\Contrato_Movimenta::whereContrato_idAndMovimentacao_id($contrato, $movimentacao)->get();
+        
+        //return  $apagar;
+        DB::table('contrato_movimenta')
+                ->where('contrato_id', '=', $contrato)
+                ->where('movimentacao_id', '=', $movimentacao)  
+                ->delete();
+        
+        $movapag = new \r2b\Movimentacao;
+        $movapag->find($movimentacao)->delete();
+        return view('/cliente/cliente_confirma');
     }
 
 }
