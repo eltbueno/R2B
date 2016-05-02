@@ -9,12 +9,18 @@
         var km = document.getElementById('km'+ placa).value;        
         var km = parseInt(km);
         
-        var dataativa = d1;
+        var dataativa = new Data(d1);
         var kmativo = d2;
         
-        var novadata = data+ " " +hora;        
+        var novadata =  ( data+ " " +hora);
         
-        alert ('nova data: ' + novadata + ' data antiga:'+dataativa)
+        alert ('nova data: ' + novadata + ' data antiga:'+dataativa);
+        
+        //var data_1 = new Date(dataativa);
+        
+        
+        
+        alert ('nova data: ' + novadata + ' data antiga:'+dataativa);
         
        
         
