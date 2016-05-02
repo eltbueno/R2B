@@ -145,6 +145,12 @@
                         <input type='submit' value='Excluir'/>
                     </form>
                 </td>
+                <td>
+                    <form method="get" action="contrato_sai">
+                        
+                        <a href="/contrato_sai/{{$p->movimentacao->id}}"><input type='button' value='Retirar Veiculo'/></a>
+                    </form>  
+                </td>
             </tr>
             
             

@@ -291,5 +291,62 @@ public function atualiza(){
         //$novmuda 
         return view('/cliente/cliente_confirma');
     }
+    public function sai($id) {
+        
+        $movatual = \r2b\Movimentacao::whereId($id)->get();
+        
+        //return $movatual;
+        return view('contrato.contrato_sai')->with(array('movatual'=>$movatual));
+        
+    }
+    
+    public function carrosai() 
+    {
+        //return "chegou no controller";
+        $status = \r2b\Status::whereNome('Retorno de Locação')->get();
+        foreach($status as $p)
+        {
+            $statusid = $p->id;
+        }
+        //return $statusid;
+        
+        $modulo = 'contrato';
+        $ativo = 1;
+        $placa = Request::input('placa');
+        $data = Request::input('data');
+        $hora = Request::input('hora');
+        $km = Request::input('km');
+        $combustivel = Request::input('combustivel');
+        
+        //$retorno = ;
+        
+        //$status = $retorno;
+        $novadata = date('Y-m-d H:i' ,strtotime($data . $hora)) ;
+        
+        DB::table('movimentacoes')
+                ->where('placa',$placa)
+                ->where('ativo',1)
+                ->update([
+                    'data_fim'=>$novadata,
+                    'ativo'=>0,
+                    'kmfim'=>$km,
+                    'combustivelfim'=>$combustivel
+                    ]);
+        
+        DB::insert('insert into movimentacoes
+                (placa,km,data_inicio,combustivel,status_id,modulo,ativo)
+                values(?,?,?,?,?,?,?)',
+                array($placa,$km,$novadata,$combustivel,$statusid,$modulo,$ativo)
+                );
+        
+        
+        
+        
+        return view('movimentacao.movimentacao_confirma');
+        
+        
+        
+        
+    }
 
 }

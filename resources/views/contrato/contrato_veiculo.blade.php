@@ -1,16 +1,6 @@
 
 <script type="text/javascript">
-    function SetName(d1, d2) {
-        if (window.opener != null && !window.opener.closed) {
-                       
-           var nome_cli = window.opener.document.getElementById("nome_cli");
-           var cliente_id = window.opener.document.getElementById("cliente_id");
-           
-           nome_cli.value = d2; 
-           cliente_id.value = d1; 
-        }
-        window.close();
-    }
+    
     function nova_movimentacao(d1,d2,d3)
     {
         var placa = d3; 
@@ -24,6 +14,7 @@
         
         var novadata = data+ " " +hora;        
         
+        alert ('nova data: ' + novadata + ' data antiga:'+dataativa)
         
        
         
