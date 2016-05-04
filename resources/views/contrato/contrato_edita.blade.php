@@ -89,14 +89,16 @@
 
 <div id="veiculos" style=" border:2px #333 solid;" >
 <input type="button" value="Basico" onclick="mudab()">  -------------------- <input type="button" value="Veiculos" ">    
+
 <form method="get" action="contrato_veiculo">
-        <label readonly="true" name="id" value=''>
-        <a href="/contrato_veiculo/{{$id}}"><input type='button' value='Novo Veiculo2'/></a>
+    <input type="hidden" name="id" id="id" value='{{$id}}'>
+        <button type="submit">Incluir novo {{$id}}</button>
 </form>  
+
         <table border='1'>
             <tr>
                 <td colspan="7">Dados Entrada</td>
-                <td colspan="3">Dados Saída</td>
+                <td colspan="4">Dados Saída</td>
             </tr>
             <tr>
                 <td>Placa</td>
@@ -122,35 +124,38 @@
                 <td>{{$p->movimentacao->combustivel}}</td>
                 <td>{{$p->periodo}}</td>
                 <td>{{$p->valor}}</td>
-                <td>    
-                    <?php if (!empty($mov->data_fim)){
-                            echo date('d-m-Y', strtotime($mov->data_fim));}
-                    ?>
-                </td>
-                <td>
+                   
                     @if(!empty($p->movimentacao->data_fim))
-                    
-                    {{date('H:i',strtotime($p->movimentacao->data_fim))}}
-                    
-                    @else
-                    @endif
-                </td>
-                <td>{{$p->movimentacao->kmfim}}</td>
-                <td>{{$p->movimentacao->combustivelfim}}</td>
+                    <td> 
+                        {{date('d-m-Y',strtotime($p->movimentacao->data_fim))}}
+                    </td>
+                    <td>
+                        {{date('H:i',strtotime($p->movimentacao->data_fim))}}
+                    </td>
+                    <td>{{$p->movimentacao->kmfim}}</td>
+                    <td>{{$p->movimentacao->combustivelfim}}</td>
                 
+                    
+                @else
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
                     <form action="contrato_retira" method="get">
                         <input type="hidden" name="movimentacao" id="movimentacao" value="{{$p->movimentacao->id}}">
                         <input type="hidden" name="contrato" id="contrato" value="{{$id}}">
                         <input type='submit' value='Excluir'/>
                     </form>
-                </td>
-                <td>
+                    </td>
+                    <td>
                     <form method="get" action="contrato_sai">
                         
                         <a href="/contrato_sai/{{$p->movimentacao->id}}"><input type='button' value='Retirar Veiculo'/></a>
                     </form>  
-                </td>
+                    </td>
+                @endif
+                
             </tr>
             
             

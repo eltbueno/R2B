@@ -130,8 +130,13 @@ Route::post('/contrato_adiciona', 'ContratoController@adiciona');
 Route::get('/contrato_busca', 'ContratoController@busca');
 Route::get('/contrato_edita', 'ContratoController@edita');
 Route::post('/contrato_atualiza', 'ContratoController@atualiza');
-Route::get('/contrato_veiculo/{id}', 'ContratoController@veiculo');
+
+
+Route::get('/contrato_veiculo', 'ContratoController@veiculo');
+
 Route::post('/contrato_veiculo/salva', 'ContratoController@salvacarro');
+
+
 Route::get('/contrato_retira', 'ContratoController@retiracarro');
 
 

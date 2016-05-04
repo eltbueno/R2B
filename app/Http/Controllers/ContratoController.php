@@ -160,9 +160,10 @@ public function atualiza(){
         $cliente->find($id)->delete();
         return view('/cliente/cliente_confirma');
     }
-    public function veiculo($id)
+    public function veiculo()
     {
-        
+        //return "chegou aqui";
+        $id = Request::input('id');
         $status = \r2b\Status::whereNome('Disponivel')->get();
         foreach($status as $p)
         //return $p->id;
@@ -172,19 +173,13 @@ public function atualiza(){
         }
         return view('contrato.contrato_veiculo')->with(array('veiculos'=>$veiculos,'id'=>$id));
     }
-    public function salvacarro()
+   
+    
+    
+    public function salvacarro(Request $request)
     {
-        $modulo = 'contrato';
-        $ativo = 1;
-        // arrumar o status, busca no banco pelo nome e retorna o id
-        
-        $status = \r2b\Status::whereNome('locado')->get();
-        //return $status;
-        foreach($status as $p)
-        {
-            $statusid = $p->id;
-        }
-        //return $statusid;
+        $erro = 0;
+        $regras = [       ];
         $contratoid = Request::input('contratoid') ;
         $placa = Request::input('placa');
         $periodo = Request::input('periodo');
@@ -193,7 +188,61 @@ public function atualiza(){
         $hora = Request::input('hora');
         $km = Request::input('km');
         $combustivel = Request::input('combustivel');
-        $novadata = date('Y-m-d H:i' ,strtotime($data . $hora)) ;
+        $novadata = date('Y-m-d H:i' ,strtotime($data . $hora)) ;   
+        //$novadata = date('Y-m-d H:i' ,strtotime("01/05/2015 08:00")) ;   
+        
+        //return date(strtotime($novadata));
+        $movativa = \r2b\Movimentacao::wherePlacaAndAtivo($placa, 1)->get();
+        foreach ($movativa as $p)
+        {
+            $dataativa = $p->data_inicio;
+            $kmativo = $p->km;
+            
+        }
+        if (strtotime($dataativa)> strtotime($novadata))
+        {
+            $message1 = "Nova data não pode ser menor que a data atual: ". $dataativa;
+            $message2 = "sem validar o km";
+            $erro = 1;
+        }
+    
+        if ($kmativo > $km)
+        {
+            $message2 = "Novo KM não pode ser menor que o antigo: ". $kmativo;
+            $erro = 1;
+        }
+        //return $erro;
+        if($erro == 1)
+        {
+            //return redirect('/contrato_veiculo/$contratoid}')
+            //->with("message1",$message1);
+            return view('contrato.contrato_veiculo')
+                    ->with(array(
+                        'placa'=>$placa,
+                        'id'=>$contratoid,
+                        'message1'=>$message1,
+                        'message2'=>$message2
+                    
+                    ));
+            
+        }
+        
+        
+        //return "ate aqui ok";
+        
+        
+        $modulo = 'contrato';
+        $ativo = 1;
+       
+        
+        $status = \r2b\Status::whereNome('locado')->get();
+        //return $status;
+        foreach($status as $p)
+        {
+            $statusid = $p->id;
+        }
+        //return $statusid;
+        
         
         //return $valor;
         
@@ -226,26 +275,13 @@ public function atualiza(){
                 values(?,?,?,?)',
                 array($contratoid,$movid,$periodo,$valor)
                 );
-        $con_mov = DB::table('contrato_movimenta')
-                ->where('contrato_id','=',$contratoid)
-                ->get(); 
-        
-        
-        //return 'tudo certo até aqui';
-        $contrato = \r2b\Contrato::whereId($contratoid)->get();
-        $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($contratoid)->get();
+              
         
         $id = $contratoid;
         
         return redirect()->action('ContratoController@edita', ['id'=>$id]);
         
-        //return redirect('/contrato_edita/{$id}');
-        //        ->with(array
-        //(
-        //    'contrato'=>$contrato,
-        //    'veiculos'=>$veiculos
-        //));
-        //return view('\contrato.contrato_edita')->with(array('contrato'=>$contrato,'veiculos'=>$veiculos));
+    
         
         
         
@@ -289,7 +325,7 @@ public function atualiza(){
                     ]);
         
         //$novmuda 
-        return view('/cliente/cliente_confirma');
+        return redirect('/contrato');
     }
     public function sai($id) {
         
@@ -342,7 +378,7 @@ public function atualiza(){
         
         
         
-        return view('movimentacao.movimentacao_confirma');
+        return redirect('/contrato');
         
         
         
