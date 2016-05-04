@@ -83,14 +83,9 @@ Inserir Veiculo no Contrato Numero: {{$id}}
                     </select>
                 </td>
               
-                <td><button type="submit" class="btn btn-primary">Enviar Novo</button></td>
+                <td><button type="submit" class="btn btn-primary">Incluir no Contrato</button></td>
                 
-                <td><input type="button" value="Incluir" 
-                           onclick="movimenta1(
-                            
-                            '{{$p->placa}}'
-                            )">                
-                </td>
+                
                                 
             </tr>
             </div>
