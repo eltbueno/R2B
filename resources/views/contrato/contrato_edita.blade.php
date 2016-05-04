@@ -36,8 +36,9 @@
     $id = $p->id;
     $tipo = $p->tipo;
     $user = $p->user_id;
-    $cliente = $p->cliente_id;
-    //$vigencia = $p->vigencia;
+    $clienteid = $p->cliente_id;
+    $clientenome = $p->cliente->cli_nome;
+    
     $vigencia = date('d-m-Y' ,strtotime($p->vigencia));
     $taxaadmin = $p->taxaadmin;
     $taxamulta = $p->taxamulta;
@@ -64,10 +65,10 @@
     <input name="user_id" value='{{$user}}'></br>
     
     <label>Cód Cliente</label></input>
-    <input required name="cliente_id" value="{{$cliente}}"></br>
+    <input required name="cliente_id" value="{{$clienteid}}"></br>
     
     <label>Nome Cliente</label></input>
-    <input name="nome_cli"><input type="button" value="Buscar"></br>
+    <input name="nome_cli" value="{{$clientenome}}"><input type="button" value="Buscar"></br>
     
     <label>Vigencia (data final dd-mm-aaa)</label></input>
     <input name="vigencia" value="{{$vigencia}}"></br>

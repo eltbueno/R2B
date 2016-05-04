@@ -9,8 +9,9 @@ class Contrato extends Model
     protected $table='contratos';
     protected $fillable=['id','tipo','vigencia','taxaadmin','taxamulta','vencimento'];
     
-    public function cliente()
-    {
+    
+    
+    public function cliente(){
         return $this->belongsTo('r2b\Cliente');
     }
     

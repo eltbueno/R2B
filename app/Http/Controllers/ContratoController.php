@@ -83,6 +83,8 @@ class ContratoController extends Controller{
         {
         $id = Request::input('id'); 
         $contrato = \r2b\Contrato::whereId($id)->get();
+        
+        //return $contrato;
         $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($id)->get();
         //$veiculos = DB::table('contrato_movimenta')
                 //->where('contrato_id','=',$id)
