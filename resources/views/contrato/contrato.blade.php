@@ -28,8 +28,9 @@
         <td><input type='text' name='cliente_nome'/></td>
         
         <td><input type='submit' value='Buscar'/></td>
+        @can('comercial')
         <td><input type="button" value='Novo Contrato'onclick="novo()"></input> </td>
-        
+        @endcan
         </form>
     </tr>
     
