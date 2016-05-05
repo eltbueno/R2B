@@ -118,9 +118,14 @@ class ContratoController extends Controller{
             ]
         );
           
-        $contrato = DB::select('select  * from contratos where id = ?',[$id]);
+        $contrato = \r2b\Contrato::whereId($id)->get();
+        $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($id)->get();
         
-        return view('contrato.contrato_edita')->with('contrato',$contrato);
+        
+        
+        
+        //return view('contrato.contrato_edita')->with('contrato',$contrato);
+        return view('contrato.contrato_edita')->with(array('contrato'=>$contrato,'veiculos'=>$veiculos));
         }
 
 
