@@ -25,7 +25,9 @@
         
         
         <td><input type='submit' value='Buscar'/></td>
+        @can('operacional')
         <td><input type="button" value='Novo Veiculo'onclick="novo()"></input> </td>
+        @endcan
         
         
        

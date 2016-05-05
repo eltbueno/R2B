@@ -26,6 +26,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         parent::registerPolicies($gate);
 
-        //
+        $gate->define('admin', function ($user)
+        {
+            return $user->perfil == 'administrador';
+        });
+        
+        $gate->define('comercial', function ($user)
+        {
+            return $user->perfil == 'comercial' || $user->perfil == 'administrador';
+        });
+        $gate->define('operacional', function ($user)
+        {
+            return $user->perfil == 'operacional'|| $user->perfil == 'administrador';
+        });
     }
 }

@@ -57,7 +57,10 @@
             
             <td><input name='id'value='{{$p->id}}'readonly="true"> </td>    
             <td> {{$p->cliente->cli_nome }} </td>
+            
+            @can('comercial')
             <td><input type="submit" value="Editar"> </td>
+            @endcan
         </tr>
    </form>
  

@@ -29,7 +29,12 @@
                 <li><a href="/movimentacao">Movimentação</a> </li>
                 <li><a href="/contrato">Contratos</a> </li>
                 <li><a href="/configuracao">Configurações</a> </li>
+                
+                @can('admin')
                 <li><a href="/usuario">Usuários</a> </li>
+                
+                @endcan
+                
                 
                 
             </ul>              
