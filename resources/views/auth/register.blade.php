@@ -40,7 +40,7 @@
         <select  name="perfil" >
             <option value=""> </option>
             <option value="administrador"> Administrador</option>
-            <option value="comercila"> Comercial</option>
+            <option value="comercial"> Comercial</option>
             <option value="operacional"> Operacional</option>
             
         </select>
