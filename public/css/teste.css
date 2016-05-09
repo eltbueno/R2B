@@ -1,6 +1,6 @@
 body{
     //background-color: #2e6da4;
-    background-image: url(/img/bg.jpg) ;
+    background-image: url(/css/img/bg.jpg) ;
 }
 #topo {
     display: inline;
@@ -29,6 +29,7 @@ body{
     display: inline;
     width: 84.7%;
     float: left;
+	margin-left: 302px;
      border-width: thin;
     border-style: solid;
     border-color: #000000;
@@ -38,10 +39,12 @@ body{
     display: inline;
     width: 84.7%;
     float: left;
+	padding-left: 257px;
+	border-left-width: 248px;
      border-width: thin;
     border-style: solid;
     border-color: #000000;
-    color: #35DAFA;
+    color: #000;
 }
 #mostra {
     display: inline;

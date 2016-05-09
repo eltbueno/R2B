@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('principal');
+//});
 
+Route::get('/', 'UserController@principal');
+
+Route::get('/entrar', function () {
+    return view('entrar');
+});
 
 
 // Authentication routes...

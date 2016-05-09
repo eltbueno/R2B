@@ -8,8 +8,18 @@ class EstadoController extends Controller{
     }
     public function adiciona(){
         $nome = Request::input('nome');
-        DB::insert('insert into estados(nome)values(?)', array($nome));
-        return view('/configuracao/estado/estado_confirma');        
+        
+        $id = DB::table('estados')->insertGetId
+        (
+            [
+                'nome'=>$nome
+            ]
+        );
+        
+        $estado = \r2b\Estado::find($id);
+        
+        //DB::insert('insert into estados(nome)values(?)', array($nome));
+        return view('contrato_edita')->with(array('estado'=>$estado,'message'=>'Cadastrado com Sucesso'));        
         
     }
     public function busca(){

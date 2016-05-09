@@ -51,7 +51,7 @@ class AuthController extends Controller
                 //return "ate aqui veio";
                 
                 [
-                    'login'=>$request->login,
+                    'login'=>$request->username,
                     'password'=>$request->password
                 ]
                 ))
@@ -64,7 +64,8 @@ class AuthController extends Controller
         {
            // $validacao = Validator::make($request->all());
             //return redirect('auth/login');
-            return "erro ao logar";
+            return redirect('/auth/login')
+            ->with("message","Usuário e/ou senha inválido(s)");
         }
         
     }

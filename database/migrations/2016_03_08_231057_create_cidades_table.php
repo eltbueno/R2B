@@ -22,7 +22,6 @@ class CreateCidadesTable extends Migration
         
         Schema::table('cidades', function($table)
             {
-                
                 $table->foreign('estado_id')->references('id')->on('estados');
             }               
         );

@@ -1,7 +1,11 @@
 <html>
     <head>
         <link href="css/r2b.css" rel="stylesheet">
-        
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="css/simple-sidebar.css" rel="stylesheet">
         
         <title>R2B System - Locações</title> 
     </head>
@@ -21,23 +25,22 @@
         </div>
         
         <nav id="menu">
-            <ul>
-                <li><h1>Menu</h1></li>
-                <li><a href="/principal">Home</a> </li>
-                <li><a href="/cliente">Clientes</a> </li>
-                <li><a href="/veiculo">Veiculos</a> </li>
-                <li><a href="/movimentacao">Movimentação</a> </li>
-                <li><a href="/contrato">Contratos</a> </li>
-                <li><a href="/configuracao">Configurações</a> </li>
+            <ul></ul>              
+                
+                
+                <li class="sidebar-brand"><a href="/principal">Home<span style="font-size:16px;" class=" glyphicon glyphicon-home"></span></a> </li>
+                <li><a href="/cliente">Clientes<span style="font-size:16px;"></span><span style="font-size:16px;" class="glyphicon glyphicon-user"></span></a> </li>
+                <li><a href="/veiculo">Veiculos<span style="font-size:16px;" class=" glyphicon glyphicon-road"></span></a> </li>
+                <li><a href="/movimentacao">Movimentação<span style="font-size:16px;" class=" glyphicon glyphicon-retweet"></span></a> </li>
+                <li><a href="/contrato">Contratos<span style="font-size:16px;" class="glyphicon glyphicon-folder-open"></span></a> </li>
+                <li><a href="/configuracao">Configurações<span style="font-size:16px;" class="glyphicon glyphicon-cog"></span></a> </li>
                 
                 @can('admin')
                 <li><a href="/usuario">Usuários</a> </li>
                 
                 @endcan
-                
-                
-                
-            </ul>              
+                </ul>                 
+                       
         </nav>
         <section id='menuconf'>
             

@@ -3,12 +3,11 @@
         <meta charset="UTF-8" />
         <title>R2B System - Locações</title>
         <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="../css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="../css/style.css" />
-        <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
+        <link rel="stylesheet" type="text/css" href="login/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="login/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="login/css/animate-custom.css" />
     </head>
     <body>
-        
         <div class="container">
             <!-- Codrops top bar -->
             <div class="codrops-top">
@@ -16,7 +15,6 @@
                 
                 <div class="clr"></div>
             </div><!--/ Codrops top bar -->
-            
             <header>
                 <h1>Faca seu Login</span></h1>
 				
@@ -44,14 +42,6 @@
                                     <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
                                     <label for="loginkeeping">Manter Conectado</label>
 				</p>
-                                
-                                <div class="text-info">
-                                    @if(Session::has('message'))
-                                    {{Session::get('message')}}
-                                    @endif
-                                </div>
-                                
-                                
                                 <p class="login button"> 
                                     <input type="submit" value="Login" /> 
 				</p>
