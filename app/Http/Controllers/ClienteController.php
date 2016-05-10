@@ -137,6 +137,20 @@ public function atualiza(){
     
     public function apaga($id){        
         $cliente = new \r2b\Cliente;
+        
+        $contrato = \r2b\Contrato::whereCliente_id($id)->get();
+        
+        
+        foreach($contrato as $p)
+        {
+            if(!empty( $p->cliente->id))
+            {
+                //return $p->cliente->id;
+                return "Cliente Possui contrato, impossível apagar";
+            }          
+        }
+        
+        
         $cliente->find($id)->delete();
         return view('/cliente/cliente_confirma');
     }

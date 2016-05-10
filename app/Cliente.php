@@ -15,7 +15,7 @@ class Cliente extends Model
     }
     
     public function contrato(){
-        return $this->belongsTo('r2b\Contrato');
+        return $this->hasMany('r2b\Contrato');
     }
     
 }

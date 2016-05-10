@@ -18,7 +18,8 @@ class CreateVeiculosTable extends Migration
                 $table->string('chassi',17)->unique();
                 $table->string('renavan');
                 $table->string('anofab');
-                $table->string('anomod');                
+                $table->string('anomod');  
+                $table->string('nomemod');  
                 $table->string('grupo',1);
                 $table->timestamps();
             }
