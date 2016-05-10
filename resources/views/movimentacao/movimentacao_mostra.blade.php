@@ -3,7 +3,7 @@
 @stop
 @section('mostra')
 
-<form method="get" action='/movimentacao_detalhe'>
+
     <table border="1">
         <tr>
             <td>Placa</td>
@@ -16,7 +16,7 @@
         </tr>
       
         @foreach($mov as $p)
-        
+        <form method="get" action='/movimentacao_detalhe'>
        
         <tr>
         <input style="display: none" type="text" id='placa' name='placa' value="{{$p->placa}}" ></input>
@@ -29,9 +29,9 @@
             <td>{{$p->modulo}}</td>   
             <td><input type="submit" value="Detalhado" readonly="true">  </input></td>
         </tr>
-                
+         </form>        
         @endforeach
     </table>
-</form>      
+     
 
 @stop
