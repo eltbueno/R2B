@@ -32,7 +32,20 @@ class UserController extends Controller{
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->remember_token = str_random(100);
-        $user->save();
+        $checauser = DB::select('select  * from users where login = ?',[$user->login]);
+        //$checauser = \r2b\User::whereLogin($user->login)->get();
+        
+        //return $checauser->login;
+        if (!empty($checauser))
+        {
+            return 'Login já existe';
+        }
+        else
+        {
+            $user->save();
+        }
+        
+        
         
         return redirect('usuario_novo')
             ->with("message","Registrado com Sucesso");
@@ -52,28 +65,26 @@ class UserController extends Controller{
                 'message'=>"Clique para editar",
                 'usuarios'=> $usuarios
             ));
-        }
-                      
+        }                     
         
         elseif (empty($perfil)&& !empty($nome) )
         {
-            $usuarios = \r2b\User::where('nome','like','%'.$nome.'%')
-                ->get(); 
-            return $usuarios;
+            $usuarios = \r2b\User::where('nome','like','%'.$nome.'%')->get(); 
+            return redirect('usuario')
+            ->with(array(
+                'message'=>"Clique para editar",
+                'usuarios'=> $usuarios
+            ));
         }
         elseif (!empty($perfil)&& empty($nome) )
         {
-            $usuarios = \r2b\User::wherePerfil($perfil)
-                
-                ->get(); 
-            return $usuarios;
+            $usuarios = \r2b\User::wherePerfil($perfil)->get(); 
+            return redirect('usuario')
+            ->with(array(
+                'message'=>"Clique para editar",
+                'usuarios'=> $usuarios
+            ));
         }
-        else
-        {
-            $usuarios = \r2b\User::wherePerfil($perfil)
-                ->where('nome',$nome)
-                ->get(); 
-            return $usuarios;
-        }
+        
     }
 }

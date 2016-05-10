@@ -35,11 +35,13 @@
     <tr>
         <td>Nome</td>
         <td>Perfil</td>            
+        <td>Login</td>
     </tr>
     @foreach(Session::get('usuarios') as $p)
     <tr>
         <td>{{$p->nome}}</td>
         <td>{{$p->perfil}}</td>            
+        <td>{{$p->login}}</td> 
     </tr>
     @endforeach
     </table>
