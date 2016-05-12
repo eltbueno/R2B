@@ -127,7 +127,7 @@
 </table> 
 
 @if ($statusativo == "Locado")
-    Não pode
+    Não pode Movimentar carro locado
 @else
 <form name="novo" method="get" action='/movimentacao_novo'>
     <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"   
