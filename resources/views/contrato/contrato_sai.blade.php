@@ -57,8 +57,8 @@
             </tr>
             <tr>
             <input type="hidden" name="placa" id="placa" value="{{$placa}}">
-                <td><input size="10"type="text" name="data" id="data"></td>                
-                <td><input size="10"type="text" name="hora" id="hora"></td>
+                <td><input size="10"type="date" name="data" id="data"></td>                
+                <td><input size="10"type="time" name="hora" id="hora"></td>
                 <td><input size="10"type="text" name="km" id="km"></td>                
                 <td>
                     <select name="combustivel" id="combustivel">
