@@ -126,7 +126,9 @@
         @endforeach
 </table> 
 
+@if ($statusativo == "Locado")
 
+@else
 <form name="novo" method="get" action='/movimentacao_novo'>
     <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"   
     <div id="menu2">        
@@ -158,4 +160,5 @@
    
     <input type="button" value='Incluir Movimentação'onclick="nova_movimentacao()"></input>
 </form>
+@endif
 @stop
