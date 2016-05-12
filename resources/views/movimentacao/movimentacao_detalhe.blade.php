@@ -5,6 +5,7 @@
 <?php 
     echo $dataativa = date('d-m-Y H:i', strtotime($p->data_inicio));
     echo $kmativo = $p->km;
+    echo $statusativo = $p->status->nome;
         
   ?>
 @endforeach
@@ -114,13 +115,18 @@
 
             <td>{{$mov->km}}</td>   
             <td>{{$mov->combustivel}}</td>
-            <td>{{$mov->modulo}}</td>   
+            <td>{{$mov->modulo}}</td> 
+            @foreach ($contmov as $p)
+            <td>{{$p->contrato_id}}</td>
+            @endforeach
              
         </tr>
         
    
         @endforeach
 </table> 
+
+
 <form name="novo" method="get" action='/movimentacao_novo'>
     <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"   
     <div id="menu2">        

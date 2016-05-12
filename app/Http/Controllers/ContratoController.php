@@ -26,53 +26,30 @@ class ContratoController extends Controller{
         {  
             $contratos = \r2b\Contrato::All();            
         }      
-        elseif ($id != "" && $nome == "" && $tipo == "" ) 
+        elseif ($id != "" && $cli_id == "" && $cli_nome == "" ) 
         {
-            $clientes = DB::select('select  * from clientes where id = ?',[$id]); 
+            $contratos = \r2b\Contrato::whereId($id)->get();
+            //$contratos = DB::select('select  * from contratos where id = ?',[$id]); 
         }
-        elseif ($id == "" && $nome == "" && $tipo != "" ) 
+        elseif ($id == "" && $cli_id != "" && $cli_nome == "" ) 
         {
-            $clientes = DB::select('select  * from clientes where cli_tipo = ?',[$tipo]); 
+            $contratos = \r2b\Contrato::whereCliente_id($cli_id)->get();
         }
-        elseif ($id == "" && $nome != "" && $tipo == "" ) 
+        elseif ($id == "" && $cli_id == "" && $cli_nome != "" ) 
         {
-            $clientes = DB::table('clientes')                       
-                ->where('cli_nome','like','%'.$nome.'%')
-                ->get(); 
-        }
-        elseif ($id != "" && $nome != "" && $tipo == "" )
-        {                     
-            $clientes = DB::table('clientes')
-                ->where('id','=',$id)
-                ->where('cli_nome','like','%'.$nome.'%')
-                ->get();                                      
-        }
-        
-        elseif ($id != "" && $nome == "" && $tipo != "" )
-        {                     
-            $clientes = DB::table('clientes')
-                ->where('id','=',$id)                       
-                ->where('cli_tipo','=',$tipo)
-                ->get();                                      
-        }
-        
-        elseif ($id == "" && $nome != "" && $tipo != "" )
-        {                     
-            $clientes = DB::table('clientes')                
-                ->where('cli_nome','like','%'.$nome.'%')
-                ->where('cli_tipo','=',$tipo)
-                ->get();                                      
+           // $contratos = \r2b\Contrato::whereCliente('like','%'.$cli_nome.'%') ->get(); 
+            
+            
+            $contratos = \r2b\Contrato::with(['cliente' => function ($query) {
+                $nomecli = $cli_nome;
+                $query->where('cli_nome', 'like', '%'.$nomecli .'%');
+            }])->get();
+            
+            
         }
         
         
-        elseif ($id != "" && $nome != "" && $tipo != "" )
-        {                     
-            $clientes = DB::table('clientes')
-                ->where('id','=',$id)
-                ->where('cli_nome','like','%'.$nome.'%')
-                ->where('cli_tipo','=',$tipo)
-                ->get();                                      
-        }           
+        
             
         return view('contrato.contrato')->with('contratos',$contratos);
         

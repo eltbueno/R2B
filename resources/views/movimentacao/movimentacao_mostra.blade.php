@@ -26,7 +26,8 @@
             <td><?php echo date('H:i', strtotime($p->data_inicio));?></td>
             <td>{{$p->km}}</td>   
             <td>{{$p->combustivel}}</td>
-            <td>{{$p->modulo}}</td>   
+            <td>{{$p->modulo}}</td>
+            
             <td><input type="submit" value="Detalhado" readonly="true">  </input></td>
         </tr>
          </form>        

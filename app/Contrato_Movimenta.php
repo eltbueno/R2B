@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contrato_Movimenta extends Model
 {
     protected $table='contrato_movimenta';
-    protected $fillable=['periodo','valor'];
+    protected $fillable=['contrato_id,periodo','valor'];
     
     public function movimentacao(){
         return $this->belongsTo('r2b\Movimentacao');        

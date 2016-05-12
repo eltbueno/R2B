@@ -31,7 +31,7 @@ class MovimentacaoController extends Controller{
             $mov = \r2b\Movimentacao::whereStatus_idAndAtivo( $status, 1)->get();
         
         } 
-                      
+        
        return view('movimentacao.movimentacao_mostra')->with(array('mov'=>$mov,'status'=>$status2));
        
     }
@@ -88,6 +88,14 @@ class MovimentacaoController extends Controller{
         
         $ativo = \r2b\Movimentacao::whereAtivoAndPlaca(1, $placa)->get();
         
+        foreach ($mov as $p)
+        {
+            $contmov = \r2b\Contrato_Movimenta::whereMovimentacao_id($p->id)->get();
+        }
+        
+        
+        //return $contmov->contrato_id;
+        
         //return $mov;
         return view('movimentacao.movimentacao_detalhe')
                 ->with(array('mov'=>$mov,
@@ -95,6 +103,7 @@ class MovimentacaoController extends Controller{
                              // 'data_inicio'=>$datainicio,
                              // 'data_fim'=>$datafim
                                 'ativo'=>$ativo,
+                                'contmov'=>$contmov,
                                 'status'=>$status2
                             ));
     }

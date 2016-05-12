@@ -15,4 +15,7 @@ class Movimentacao extends Model
     public function status(){
         return $this->belongsTo('r2b\Status');
     }
+    public function contmov(){
+        return $this->belongsTo('r2b\Contrato_Movimenta');
+    }
 }
