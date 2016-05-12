@@ -70,8 +70,8 @@
     <label>Nome Cliente</label></input>
     <input name="nome_cli" value="{{$clientenome}}"><input type="button" value="Buscar"></br>
     
-    <label>Vigencia (data final dd-mm-aaa)</label></input>
-    <input name="vigencia" value="{{$vigencia}}"></br>
+    <label>Vigencia(Fim do Contrato)</label></input>
+    <input type="date" name="vigencia" value="{{$vigencia}}"></br>
     
     <label>Taxa Administrativa</label></input>
     <input name="taxaadmin" value="{{$taxaadmin}}"></br>
