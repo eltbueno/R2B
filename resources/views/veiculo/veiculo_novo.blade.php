@@ -14,7 +14,7 @@
     <label>Renavan</label></input>
     <input name="renavan"></input></br>
     
-    <label>Ando de fabricação</label></input>
+    <label>Ano de fabricação</label></input>
     <input name="anofab"></input></br>
     
     <label>Ano Modelo</label></input>

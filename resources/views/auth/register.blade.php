@@ -11,11 +11,12 @@
 
 <form method="POST" action="/usuario_salva">
     {!! csrf_field() !!}
-
+    <p>
     <div class="col-md-6">
         Nome
         <input required type="text" name="nome" value="{{ old('nome') }}">
     </div>
+    </p>
     <div class="col-md-6">
         Login
         <input required type="text" name="login" value="{{ old('login') }}">
