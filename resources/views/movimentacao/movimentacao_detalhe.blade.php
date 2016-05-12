@@ -62,13 +62,13 @@
 <form name="busca1" method="get" action='/movimentacao_detalhe'>
     <table>
     <tr>
-        <td>De (dd-mm-aaa) </td>   
-        <td>Até (dd-mm-aaa) </td>
+        <td>De  </td>   
+        <td>Até  </td>
         <td>Placa </td>            
     </tr>
     <tr>
-        <td><input type="text" id='data_inicio' name='data_inicio' value=""></td>
-        <td><input type="text" id='data_fim' name='data_fim' value=""></td>
+        <td><input type="date" id='data_inicio' name='data_inicio' value=""></td>
+        <td><input type="date" id='data_fim' name='data_fim' value=""></td>
         <td><input type="text" id='placa' name='placa' value="{{$placa}}"></td>
         <td><input type="button" value='Buscar Novo'onclick="busca()"></input> </td>
     </tr>
@@ -131,8 +131,8 @@
     <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"   
     <div id="menu2">        
     <ul>     
-        <li>Data (dd-mm-aaa)<input type="text" id='data' name='data' </li>
-        <li>Hora (hh:mm)<input type="text" id='hora' name='hora' ></li>
+        <li><input type="date" id='data' name='data' </li>
+        <li><input type="time" id='hora' name='hora' ></li>
         <li>KM <input type="text" id='km' name='km' ></li>
         
         <li>Combustivel
