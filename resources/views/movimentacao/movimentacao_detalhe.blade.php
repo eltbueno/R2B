@@ -127,7 +127,7 @@
 </table> 
 
 @if ($statusativo == "Locado")
-
+    Não pode
 @else
 <form name="novo" method="get" action='/movimentacao_novo'>
     <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"   
