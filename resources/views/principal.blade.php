@@ -66,15 +66,21 @@
             </div>
 	</noscript>
 	<!-- start: Content -->
+        
+         
+
 	<div id="content" class="span10">
+            <!-- Cria uma linha para referenciar o endereço da pagina
             <ul class="breadcrumb">
-		<li>
+		
+                <li>
                     <i class="icon-home"></i>
                     <a href="index.html">Home</a> 
                     <i class="icon-angle-right"></i>
 		</li>
 		<li><a href="#">Clientes</a></li>
             </ul>
+             -->
     <section id='menuconf'>
             
             @yield('conf')
