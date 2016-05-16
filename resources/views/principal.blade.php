@@ -24,8 +24,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
 		</a>
+                
 		<a class="brand" href="/principal"><span>R2B System</span></a>
-		</br>
+		<ul>
+                @if (Auth::check())
+                    <li><a href="{{url()}}"> {{Auth::user()->nome}} </a> </li>
+                    <li><a href="{{url('auth/logout')}}"> SAIR</a></li>
+
+                @else
+                    <li><a href="{{url('auth/login')}}"> Logar</a></li>
+                @endif
+                </ul>       
+                </br>
 				
             </div>
 	</div>
