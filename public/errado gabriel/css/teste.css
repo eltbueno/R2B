@@ -1,0 +1,93 @@
+body{
+    //background-color: #2e6da4;
+    background-image: url(/css/img/bg.jpg) ;
+}
+#topo {
+    display: inline;
+    width: 99.9%;
+    float: left;
+    border-width: thin;
+    border-style: solid;
+    border-color: #000000;
+    color: #0000C2
+}
+
+
+#menu{
+    display: inline;
+    width: 15%;
+    float: left;
+    border-width: thin;
+    border-style: solid;
+    border-color: #000000;
+}
+#menu li{
+    list-style: none;
+}
+
+#menuconf {
+    display: inline;
+    width: 84.7%;
+    float: left;
+	margin-left: 302px;
+     border-width: thin;
+    border-style: solid;
+    border-color: #000000;
+    color: #35DAFA;
+}
+#corpo {
+    display: inline;
+    width: 84.7%;
+    float: left;
+	padding-left: 257px;
+	border-left-width: 248px;
+     border-width: thin;
+    border-style: solid;
+    border-color: #000000;
+    color: #000;
+}
+#mostra {
+    display: inline;
+    width: 84.7%;
+    float: left;
+     border-width: thin;
+    border-style: solid;
+    border-color: #000000;
+    color: #35DAFA;
+}
+#botoes{
+    display: inline;
+    width: 84.7%;
+    float: left;
+    border-width: thin;
+    border-style: solid;
+    border-color: #000000;
+    color: #C40D0D;
+}
+#rodape{
+    display: inline;
+    width: 100%;
+    float: left;
+    border-width: thin;
+    border-style: solid;
+    border-color: #000000;
+}
+
+#menu2{
+    display: inline;
+    width: 99.9%;
+    float: left;
+    height: 50px;
+  //  width: 1024px;
+  //  background-color: #999;
+    border-width: thin;
+    border-style: solid;
+    border-color: #000000;
+}
+#menu2 ul{
+    list-style: none;
+}
+#menu2 li{
+    float: left;
+    padding: 5px;
+}
