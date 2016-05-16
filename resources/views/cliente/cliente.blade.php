@@ -8,9 +8,9 @@
         location.href='/cliente_novo';
     }
 </script>
-<tr>
+<!--<tr>
 <form class="form-inline">
-<!-- <table border='0'>
+ <table border='0'>
     <tr>
         <td>Codigo</td>
         <td>Nome</td>        
@@ -38,31 +38,31 @@
         
         </form>-->
 		
-<form class="form-inline">
-  <div class="form-group">
-    <label for="name3">Name</label>
-    <input type="text" class="form-control" id="exampleInputName2" placeholder="Seu Nome">
-  </div>
-  </br>
-  <div class="form-group">
-    <label for="email2">Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Seu Email">
-  </div>
-  </br>
-  <form method="get" action="/cliente_busca">
-  <div class="form-group">
-  <label for="fj">Fisico/Juridico</label>
-  <select class="form-control">
-  <option value=''></option>
-  <option value='1'>Fisico</option>
-  <option value='2'>Juridico</option>
-</select>
-</div>
-</form>
+<form class="form-inline" method="get" action="/cliente_busca">
+    <div class="form-group">
+        <label for="id">Código</label>
+        <input type="text" name="id"class="form-control" id="exampleInputName2" placeholder="Digite o Código do cliente">
+    </div>
+    </br>
+    <div class="form-group">
+        <label for="cli_nome">Nome</label>
+        <input type="text" name="cli_nome"class="form-control" id="exampleInputEmail2" placeholder="Nome do Cliente">
+    </div>
+    </br>
+  
+    <div class="form-group">
+        <label for="cli_tipo">Fisico/Juridico</label>
+        <select class="form-control" name="cli_tipo">
+            <option value=''></option>
+            <option value='1'>Fisico</option>
+            <option value='2'>Juridico</option>
+        </select> 
+    </div>
+
   <button type="submit" class="btn btn-primary">Buscar</button>
   <button type="button" onclick="novo()" class="btn btn-default">Novo Cliente</button>
 </form>
-    </tr>
+
     
 
 

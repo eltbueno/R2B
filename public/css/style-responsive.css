@@ -16,7 +16,8 @@
 	}
 		
 	#sidebar-left {
-		background: #2fa4e7;
+		
+		background:rgba(26,89,120,0.9);
 		margin-left: 0px !important;
 		position: absolute;
 		height: 100%;
@@ -292,7 +293,9 @@
 
 	.timeslot .task span {
 		border: 2px solid rgba(103, 194, 239, 1);
-		background: rgba(103, 194, 239, .1);
+		
+		background:rgba(26,89,120,0.9);
+		
 		padding: 5px;
 		display: block;
 		font-size: 10px;
