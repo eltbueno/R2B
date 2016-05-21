@@ -3,9 +3,9 @@
         <meta charset="UTF-8" />
         <title>R2B System - Locações</title>
         <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="../login/css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="../login/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="../login/css/animate-custom.css" />
+        <link rel="stylesheet" type="text/css" href="../csslogin/demo.css" />
+        <link rel="stylesheet" type="text/css" href="../csslogin/style.css" />
+        <link rel="stylesheet" type="text/css" href="../csslogin/animate-custom.css" />
     </head>
     <body>
         
