@@ -22,11 +22,7 @@
         document.getElementById("basico").style.display = "block";
         document.getElementById("veiculos").style.display = "none";
     }
-    function novov()
-    {
-        //buscacarro = window.open("contrato_veiculo", "BuscaCarro", "width=800,height=600");
-        //buscacarro.focus();
-    }
+    
     
 </script>
 <h4>Edição de Contrato</h4>

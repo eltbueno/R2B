@@ -2,6 +2,25 @@
 @section('conteudo')
 
     <script type="text/javascript">
+         
+        function edita()
+        {
+            document.getElementById("mostra").style.display = "none";
+            document.getElementById("edita").style.display = "block";
+            document.getElementById("cli_nome").readOnly = false;
+            document.getElementById("cli_end").readOnly = false;
+            document.getElementById("cli_end_num").readOnly = false;
+            document.getElementById("cli_end_com").readOnly = false;
+            document.getElementById("cli_bairro").readOnly = false;
+            document.getElementById("cli_cidade").readOnly = false;
+            //altera o estado do select modo 1
+            document.getElementById("cli_estado").disabled = false;
+            document.getElementById("cli_cep").readOnly = false;
+            document.getElementById("cli_tel").readOnly = false;
+            document.getElementById("cli_obs").readOnly = false;
+            // altera o estado do select modo 2
+            document.getElementById("cli_tipo").removeAttribute("disabled");
+        }
         function apaga(id)
         {
                   
@@ -10,7 +29,6 @@
             {
                 location.href='/cliente_apaga/'+ id;
             }
-            
         }
     </script>
     
@@ -53,38 +71,38 @@
                             <div class="form-group">
                                 <!-- Arrumar o tamanho dos campos -->
                                 <label class="control-label" for="cli_nome">Nome</label>
-                                <input required type="text" class="form-control" id="cli_nome" name="cli_nome" value="{{$p->cli_nome}}" >
+                                <input readonly="true" required type="text" class="form-control" id="cli_nome" name="cli_nome" value="{{$p->cli_nome}}" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="cli_end" class="control-label">Endereço</label>
-                                <input type="text" class="form-control" id="cli_end" name="cli_end" value="{{$p->cli_end}}">
+                                <input readonly="true" type="text" class="form-control" id="cli_end" name="cli_end" value="{{$p->cli_end}}">
                             </div>	
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="cli_end_num">Nº</label>
-                                <input type="text" class="form-control" id="cli_end_num" name="cli_end_num" value="{{$p->cli_end_num}}">
+                                <input readonly="true" type="text" class="form-control" id="cli_end_num" name="cli_end_num" value="{{$p->cli_end_num}}">
                             </div>
                         </div>
                         <div class="col-md-4">                            
                             <div class="form-group">
                                 <label class="control-label" for="cli_end_com">Complemento</label>
-                                <input type="text" class="form-control" id="cli_end_com" name="cli_end_com" value="{{$p->cli_end_com}}">
+                                <input readonly="true" type="text" class="form-control" id="cli_end_com" name="cli_end_com" value="{{$p->cli_end_com}}">
                             </div>
                         </div>
                         
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="cli_bairro">Bairro</label>
-                                <input type="text" class="form-control" id="cli_bairro" name="cli_bairro" value="{{$p->cli_bairro}}">
+                                <input readonly="true" type="text" class="form-control" id="cli_bairro" name="cli_bairro" value="{{$p->cli_bairro}}">
                             </div>
                         </div>
                         <div class="col-md-4"> 
                             <div class="form-group">
                                 <label class="control-label" for="cli_cidade">Cidade</label>
-                                <input type="text" class="form-control" id="cli_cidade" name="cli_cidade" value="{{$p->cli_cidade}}">
+                                <input readonly="true" type="text" class="form-control" id="cli_cidade" name="cli_cidade" value="{{$p->cli_cidade}}">
                             </div>						
                         </div>                        
                     </div>
@@ -92,7 +110,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="cli_estado">Estado</label>
-                                <select class="form-control" id="cli_estado" name="cli_estado">
+                                <select disabled class="form-control" id="cli_estado" name="cli_estado">
                                     <option value="">{{$p->cli_estado}}</option>
                                     <option value="Acre">Acre</option>
                                     <option value="Alagoas">Alagoas</option>
@@ -127,13 +145,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="cli_cep">CEP</label>
-                                <input type="text" class="form-control" id="cli_cep" name="cli_cep" value="{{$p->cli_cep}}">
+                                <input readonly="true" type="text" class="form-control" id="cli_cep" name="cli_cep" value="{{$p->cli_cep}}">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="cli_tel">Telefone</label>
-                                <input type="text" class="form-control" id="cli_tel" name="cli_tel" value="{{$p->cli_tel}}">
+                                <input readonly="true" type="text" class="form-control" id="cli_tel" name="cli_tel" value="{{$p->cli_tel}}">
                             </div>
                         </div>
 
@@ -142,13 +160,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="cli_obs">Observação</label>
-                                <input type="text" class="form-control" id="cli_obs" name="cli_obs" value="{{$p->cli_obs}}">
+                                <input readonly="true" type="text" class="form-control" id="cli_obs" name="cli_obs" value="{{$p->cli_obs}}">
                             </div>
                         </div>  
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="cli_tipo">Tipo de usuário (Fisico/Juridico)</label>
-                                <select id="user_type" class="form-control" name="cli_tipo" required>
+                                <select disabled id="cli_tipo" class="form-control" name="cli_tipo" required>
                                     <?php
                                     if ($p->cli_tipo == 1)
                                     {
@@ -166,69 +184,34 @@
                             </div>			
                         </div>
                     </div>
-                    <button type="submit" class="btn btn btn-success">Salvar Alterações</button>
-                    <a href="/cliente"><input class="btn btn-primary" type='button' value='Voltar' /></a>
-                    <a href="#"><input class="btn btn-danger" type='button' value='Apagar'onclick="apaga({{$p->id}})" /></a>
+                
+                    
+                    
+                    
                 @endforeach    
-                </div>                
+                 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="mostra">
+                                @can('comercial')
+                                <input class="btn btn-warning" type='button' value='Editar'onclick="edita()"/>
+                                <input class="btn btn-danger" type='button' value='Apagar'onclick="apaga({{$p->id}})"/>
+                                @endcan
+                                <a href="/cliente"><input class="btn btn-primary" type='button' value='Voltar' /></a>
+                            </div>
+
+                            <div id="edita" >
+                                <button type="submit" class="btn btn btn-success">Salvar Alterações</button>
+                                <a href="/cliente"><input class="btn btn-primary" type='button' value='Voltar' /></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>            
         </div> 
     </form>
 </div>
 @endif   
-     
-   
-    
-<!--    
-    <label>Codigo</label>   
-    
-    <input name="id" value="<?= $p->id ?>" readonly="true"></input></br>
-    <label>Nome</label>
-    
-    <input required name="cli_nome" value="<?= $p->cli_nome ?>" ></input></br>   
-    
-    <label>Endereço</label></input>
-    <input name="cli_end" value="<?= $p->cli_end ?>"></input></br>
-    
-    <label>Numero</label></input>
-    <input name="cli_end_num" value="<?= $p->cli_end_num ?>"></input></br>
-    
-    <label>Complemento</label></input>
-    <input name="cli_end_com" value="<?= $p->cli_end_com ?>"></input></br>
-    
-    <label>Bairro</label></input>
-    <input name="cli_bairro" value="<?= $p->cli_bairro ?>"></input></br>
-    
-    <label>Cidade</label></input>
-    <input name="cli_cidade" value="<?= $p->cli_cidade ?>"></input></br>
-    
-    <label>Estado</label></input>
-    <input name="cli_estado" value="<?= $p->cli_estado ?>"></input></br>
-    
-    <label>CEP</label></input>
-    <input name="cli_cep" value="<?= $p->cli_cep ?>"></input></br>
-    
-    <label>Telefone</label></input>
-    <input name="cli_tel" value="<?= $p->cli_tel ?>"></input></br>
-    
-    <label>Observação</label></input>
-    <input name="cli_obs" value="<?= $p->cli_obs?>"></input></br>
-    
-    <label>Fisico/Juridico</label></input>
-    <select name="cli_tipo" >
-        <option value="<?= $p->cli_tipo ?>"></option>
-        <option value='1'>Fisico</option>
-        <option value='2'>Juridico</option>
-    </select>
-    
-    
-    <button type="submit">Alterar</button>
-    <a href="/cliente"><input type='button' value='Voltar' /></a>
-    <a href="/cliente_apaga/<?= $p->id ?>"><input type='button' value='Apagar'/></a>
-   
-        
-        
 
-</form>
--->
 @stop

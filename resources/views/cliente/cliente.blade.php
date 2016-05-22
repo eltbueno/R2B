@@ -98,7 +98,7 @@
         <td>
             <form action="cliente_edita" method="get">
                 <input name="id" type="hidden" value="{{$p->id}}">                
-                <button class="btn btn-link" type="submit" class="btn btn-mini"><span class="glyphicon glyphicon-pencil"></span></button>
+                <button class="btn" type="submit"><span class="glyphicon glyphicon-search"></span></button>
             </form>            
         </td>   
         <td>{{ $p->id}} </td>    

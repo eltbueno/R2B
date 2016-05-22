@@ -36,6 +36,12 @@ body {
   margin: 0;
   background: #fff url(../imglogin/bg.jpg) repeat top left;
 }
+#edita{
+	display: none ;
+}
+#mostra{
+	display: block;
+}
 a {
   background: transparent;
 }
