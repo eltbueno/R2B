@@ -34,6 +34,7 @@ html {
 }
 body {
   margin: 0;
+  background: #fff url(../imglogin/bg.jpg) repeat top left;
 }
 a {
   background: transparent;

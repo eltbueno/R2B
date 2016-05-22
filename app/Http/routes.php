@@ -61,6 +61,8 @@ Route::get('/cliente_edita','ClienteController@edita');
 
 Route::post('/cliente_atualiza','ClienteController@atualiza');
 Route::get('/cliente_apaga/{id}','ClienteController@apaga');
+Route::get('/cliente_apagaerro','ClienteController@apagaerro');
+Route::get('/cliente_apagaconfirma','ClienteController@apagaconfirma');
 
 Route::get('/veiculo', function () {
     return view('veiculo.veiculo');
