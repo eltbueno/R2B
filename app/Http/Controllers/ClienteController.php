@@ -114,7 +114,12 @@ class ClienteController extends Controller{
         //$cliente = \r2b\Cliente::find($id);
         $cliente = DB::select('select  * from clientes where id = ?',[$id]);
          
-        return view('/cliente/cliente_edita')->with(array('cliente'=>$cliente));
+        $message1 = "Cadastrado com Sucesso";
+        return view('/cliente/cliente_edita')
+                ->with(array(
+                    'cliente'=>$cliente,
+                    'message1'=>$message1
+            ));
         
         }
 
