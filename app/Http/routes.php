@@ -43,20 +43,22 @@ Route::get('/usuario', function () {
 
 
 Route::get('/principal', 'UserController@principal');
-//Route::get('/principal', function () {
-//    return view('principal');
-//});
 
-
-Route::get('/cliente', function () {
-    return view('cliente.cliente');
-});
+Route::get('/cliente','ClienteController@cliente');
 Route::get('/cliente_busca','ClienteController@busca');
+
+
+
+
+
+
 Route::get('/cliente_novo', function () {
     return view('cliente.cliente_novo');
 });
 Route::post('/cliente_adiciona','ClienteController@adiciona');
 Route::get('/cliente_edita','ClienteController@edita');
+
+
 Route::post('/cliente_atualiza','ClienteController@atualiza');
 Route::get('/cliente_apaga/{id}','ClienteController@apaga');
 

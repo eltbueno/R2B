@@ -6,6 +6,12 @@ class ClienteController extends Controller{
         $this->middleware('auth');
         
     }
+    public function cliente()
+    {
+        return view('cliente.cliente');
+    }
+    
+    
     public function busca (){        
         //incluir uma função aqui para verificar os valores, depois faz a busca
                 
@@ -67,7 +73,8 @@ class ClienteController extends Controller{
             
         if ($contrato == "")
         {
-            return view('cliente/cliente_mostra')->with('clientes',$clientes);
+            //return view('cliente/cliente_mostra')->with('clientes',$clientes);
+            return view('cliente/cliente')->with('clientes',$clientes);
         }
         else
         {
@@ -82,8 +89,10 @@ class ClienteController extends Controller{
         {
         $id = Request::input('id'); 
         $clientes = DB::select('select  * from clientes where id = ?',[$id]);
-        //return  $id;
+        //return  $clientes;
+        
         return view('cliente/cliente_edita')->with('clientes',$clientes);
+        return redirect()->to('cliente/cliente_edita', ['clientes'=>$clientes]);
         }
 
 
