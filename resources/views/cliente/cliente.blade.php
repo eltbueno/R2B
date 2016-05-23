@@ -62,7 +62,9 @@
                     -->
                                    
                     <input type='submit' class="btn btn btn-success" value='Buscar'/>
+                    @can('comercial')
                     <input type="button" class="btn btn-primary" value='Novo Cliente'onclick="novo()">
+                    @endcan
 		</div>		
             </div>
         </div>
