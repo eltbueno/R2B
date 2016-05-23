@@ -16,10 +16,10 @@
 //});
 
 Route::get('/', 'UserController@principal');
-
-Route::get('/entrar', function () {
-    return view('entrar');
-});
+Route::get('/principal', 'UserController@principal');
+//Route::get('/entrar', function () {
+//    return view('entrar');
+//});
 
 
 // Authentication routes...
@@ -42,39 +42,34 @@ Route::get('/usuario', function () {
 
 
 
-Route::get('/principal', 'UserController@principal');
+
 
 Route::get('/cliente','ClienteController@cliente');
 Route::get('/cliente_busca','ClienteController@busca');
-
-
-
-
-
-
 Route::get('/cliente_novo', function () {
     return view('cliente.cliente_novo');
 });
 Route::post('/cliente_adiciona','ClienteController@adiciona');
 Route::get('/cliente_edita','ClienteController@edita');
 
-
 Route::post('/cliente_atualiza','ClienteController@atualiza');
 Route::get('/cliente_apaga/{id}','ClienteController@apaga');
 Route::get('/cliente_apagaerro','ClienteController@apagaerro');
 Route::get('/cliente_apagaconfirma','ClienteController@apagaconfirma');
 
+
 Route::get('/veiculo', function () {
     return view('veiculo.veiculo');
 });
 Route::get('/veiculo_busca','VeiculoController@busca');
-Route::get('/veiculo_novo', function () {
-    return view('veiculo.veiculo_novo');
-});
+
+Route::get('/veiculo_novo', 'VeiculoController@novo');
 Route::post('/veiculo_adiciona','VeiculoController@adiciona');
+
 Route::get('/veiculo_edita','VeiculoController@edita');
 Route::post('/veiculo_atualiza','VeiculoController@atualiza');
 Route::get('/veiculo_apaga/{placa}','VeiculoController@apaga');
+
 
 
 

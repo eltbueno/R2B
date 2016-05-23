@@ -33,7 +33,7 @@
 		
                     @if (Auth::check())
                     <a href="{{url()}}"> {{Auth::user()->nome}} </a>
-                    <a href="{{url('auth/logout')}}"> SAIR</a>
+                    
 
                     @else
                     <a href="{{url('auth/login')}}"> Logar</a>
@@ -61,6 +61,12 @@
 			<li><a href="/contrato"><i class="icon-folder-open-alt"></i><span class="hidden-tablet"> Contrato</span></a></li>
 			<li><a href="/configuracao"><i class="icon-cog"></i><span class="hidden-tablet"> Configuração</span></a></li>
 			<li><a href="/usuario"><i class="icon-user"></i><span class="hidden-tablet"> Usuários</span></a></li>
+                        @if (Auth::check())                            
+                        <li><a href="{{url('auth/logout')}}"><i class="icon-backward"></i> SAIR</a></li>
+                        @else
+                        @endif
+                        
+                        
                     </ul>
 		</div>
             </div>

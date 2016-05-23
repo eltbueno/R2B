@@ -1,10 +1,20 @@
 <?php namespace r2b\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Request;
+
+// os dois abaixo são usados na validação do formulario de cadastro.
+use r2b\Http\Requests\ValidaVeiculo;
+use Validator;
+
 class VeiculoController extends Controller{
     public function __construct() {
         $this->middleware('auth');
         
+    }
+    
+    public function novo()
+    {
+        return View("veiculo.veiculo_novo");
     }
     public function busca (){        
                      
@@ -33,7 +43,7 @@ class VeiculoController extends Controller{
         }
             
             
-        return view('veiculo/veiculo_mostra')->with('veiculos',$veiculos);
+        return view('veiculo/veiculo')->with('veiculos',$veiculos);
         
         
     }
@@ -41,13 +51,28 @@ class VeiculoController extends Controller{
     public function edita()
         {
         $placa = Request::input('placa'); 
+        
         $veiculos = DB::select('select  * from veiculos where placa = ?',[$placa]);
         return view('veiculo/veiculo_edita')->with('veiculos',$veiculos);
         }
 
 
     
-    public function adiciona(){       
+    public function adiciona(ValidaVeiculo $formveiculo){   
+        
+        
+        $validator = Validator::make(
+                $formveiculo->all(), 
+                $formveiculo->rules(),
+                $formveiculo->messages()
+                );
+        
+        if ($validator->valid())
+        {
+            return "ok";
+        }
+        
+        
         $placa = Request::input('placa');
         $chassi = Request::input('chassi');
         $renavan = Request::input('renavan');
@@ -65,7 +90,8 @@ class VeiculoController extends Controller{
         
         if(!empty($carro))
         {
-            return 'placa já existe';
+            //return 'placa já existe';
+            return redirect()->back();
         }
         elseif (!empty($carro2))
         {

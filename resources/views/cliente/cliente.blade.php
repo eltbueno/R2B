@@ -1,13 +1,13 @@
 @extends('principal')
 @section('conteudo')
-<section id='clibase'>
-    @yield('clibase')
-        <script type="text/javascript">
-            function novo()
-            {
-                location.href='/cliente_novo';
-            }
-        </script>
+
+    
+<script type="text/javascript">
+    function novo()
+    {
+        location.href='/cliente_novo';
+    }
+</script>
 		
     <div class="container">
         <h2>Cadastro - Clientes</h2>
@@ -70,7 +70,7 @@
         </form>
     </div>
 
-</section>
+
 
 @if(empty($clientes))
         
@@ -114,10 +114,5 @@
 </div>
 
  @endif
-
-
-
-
-
 @stop
 
