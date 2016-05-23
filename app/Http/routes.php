@@ -69,7 +69,8 @@ Route::post('/veiculo_adiciona','VeiculoController@adiciona');
 Route::get('/veiculo_edita','VeiculoController@edita');
 Route::post('/veiculo_atualiza','VeiculoController@atualiza');
 Route::get('/veiculo_apaga/{placa}','VeiculoController@apaga');
-
+Route::get('/veiculo_apagaerro','VeiculoController@apagaerro');
+Route::get('/veiculo_apagaconfirma','VeiculoController@apagaconfirma');
 
 
 

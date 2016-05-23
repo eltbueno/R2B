@@ -30,7 +30,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="renavan">Renavan</label>
-                                <input type="text" class="form-control" id="renavan" name="renavan">
+                                <input value="{{Input::old('renavan')}}" type="text" class="form-control" id="renavan" name="renavan">
                             </div>
                         </div>
                     </div>
@@ -38,14 +38,14 @@
                         <div class="col-md-4">                            
                             <div class="form-group">
                                 <label class="control-label" for="anofab">Ano de Fabricação</label>
-                                <input type="text" class="form-control" id="anofab" name="anofab">
+                                <input value="{{Input::old('anofab')}}" type="text" class="form-control" id="anofab" name="anofab">
                             </div>
                         </div>
                         
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="anomod">Ano Modelo</label>
-                                <input type="text" class="form-control" id="anomod" name="anomod">
+                                <input value="{{Input::old('anomod')}}" type="text" class="form-control" id="anomod" name="anomod">
                             </div>
                         </div>
                         
@@ -57,7 +57,14 @@
                             <div class="form-group">
                                 <label class="control-label" for="grupo">Grupo</label>
                                 <select class="form-control" id="grupo" name="grupo">
-                                    <option value="">Selecione</option>
+                                    <?php
+                                        if(Input::old('grupo') == "")
+                                        {    $texto = "Selecione";}
+                                        else
+                                        {   $texto = Input::old('grupo'); }
+                                        
+                                    ?>
+                                    <option value="{{Input::old('grupo')}}">{{$texto}}</option>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>

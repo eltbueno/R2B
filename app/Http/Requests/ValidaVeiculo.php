@@ -12,7 +12,7 @@ class ValidaVeiculo extends Request
         return
         [
             //'placa'=> 'required|min:7|max:7|unique:veiculos|regex:/^[a-z]{3}\?[0-9]{4}+$/',
-            'placa'=> 'required|unique:veiculos|regex:/^[a-z]{3}[0-9]{4}$/',
+            'placa'=> 'required|unique:veiculos|regex:/^[a-z,A-Z]{3}[0-9]{4}$/',
             'chassi'=> 'required|unique:veiculos|between:17,17',
         ];
     }

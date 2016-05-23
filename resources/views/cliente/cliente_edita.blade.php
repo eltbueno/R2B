@@ -188,7 +188,7 @@
                     
                     
                     
-                @endforeach    
+                   
                  
                     <div class="row">
                         <div class="col-md-4">
@@ -207,6 +207,8 @@
 
                         </div>
                     </div>
+                
+                @endforeach 
                 </div>
             </div>            
         </div> 

@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label" for="fj1">Tipo de usuário (Fisico/Juridico)</label>
+                                <label class="control-label" for="fj1">Tipo de Cliente (Fisico/Juridico)</label>
                                     <select id="cli_tipo" class="form-control" name="cli_tipo">
                                         <option value="">Selecione</option>
                                         <option value="1">Fisico</option>

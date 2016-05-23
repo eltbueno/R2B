@@ -21,6 +21,11 @@ class ClienteController extends Controller{
         elseif ($id != "" && $nome == "" && $tipo == "" ) 
         {
             $clientes = DB::select('select  * from clientes where id = ?',[$id]); 
+            //$clientes = DB::table('clientes')
+            //    ->where('id','=',$id)
+            //    ->orwhere('cli_nome','like','%'.$nome.'%')
+            //    ->orwhere('cli_tipo','=',$tipo)
+            //    ->get();
         }
         elseif ($id == "" && $nome == "" && $tipo != "" ) 
         {
@@ -169,8 +174,9 @@ public function atualiza(){
             }            
         }
         
-        $cliente =  new \r2b\Cliente;
-        $cliente->find($id)->delete();
+        //$cliente =  new \r2b\Cliente;
+        //$cliente->find($id)->delete();
+        DB::table('clientes')->where('id','=',$id)->delete();
         return redirect()->action('ClienteController@apagaconfirma');
     }
     

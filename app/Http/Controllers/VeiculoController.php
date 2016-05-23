@@ -32,7 +32,12 @@ class VeiculoController extends Controller{
         }
         elseif ($placa == "" && $chassi != "" ) 
         {
-            $veiculos = DB::select('select  * from veiculos where chassi = ?',[$chassi]); 
+            //$veiculos = DB::select('select  * from veiculos where chassi = ?',[$chassi]); 
+            $veiculos = DB::table('veiculos')                       
+                ->where('chassi','like','%'.$chassi.'%')
+                ->get(); 
+            
+            
         }
         elseif ($placa != "" && $chassi != "" ) 
         {
@@ -52,8 +57,8 @@ class VeiculoController extends Controller{
         {
         $placa = Request::input('placa'); 
         
-        $veiculos = DB::select('select  * from veiculos where placa = ?',[$placa]);
-        return view('veiculo/veiculo_edita')->with('veiculos',$veiculos);
+        $veiculo = DB::select('select  * from veiculos where placa = ?',[$placa]);
+        return view('veiculo/veiculo_edita')->with('veiculo',$veiculo);
         }
 
 
@@ -69,56 +74,35 @@ class VeiculoController extends Controller{
         
         if ($validator->valid())
         {
-            return "ok";
+            //return $formveiculo->placa;
+       
+            DB::insert('insert into veiculos
+              (placa, chassi, renavan, anofab , anomod, grupo) 
+              values (?,?,?,?,?,?)',
+              array ($formveiculo->placa, 
+                  $formveiculo->chassi, 
+                  $formveiculo->renavan, 
+                  $formveiculo->anofab,
+                  $formveiculo->anomod,
+                  $formveiculo->grupo)
+              );
+
+
+            $movimentacao = new \r2b\Movimentacao;
+            $movimentacao->placa = $formveiculo->placa;
+            $movimentacao->modulo = 'veiculo';
+            $movimentacao->ativo = 1;
+            $movimentacao->data_inicio = '2016-01-01 08:00';
+            $movimentacao->km = 0;
+            $movimentacao->combustivel = 0;
+            $movimentacao->status_id =1;
+            $movimentacao->save();
+
+            $veiculo = DB::select('select  * from veiculos where placa = ?',[$formveiculo->placa]);
+            $message = "Cadastrado com Sucesso";
+            return view('/veiculo/veiculo_edita')->with(array('veiculo'=>$veiculo,'message1'=>$message));
         }
-        
-        
-        $placa = Request::input('placa');
-        $chassi = Request::input('chassi');
-        $renavan = Request::input('renavan');
-        $anomod = Request::input('anofab');
-        $anofab = Request::input('anomod');
-        $grupo = Request::input('grupo');
-        //$carro = "";
-        //$carro2 = "";
-        $carro = DB::select('select * from veiculos where placa = ?',[$placa]);
-        $carro2 = DB::select('select  * from veiculos where chassi = ?',[$chassi]);
-        
-        //$datateste = '2016-01-01 08:00';
-        //return $datateste;
-        
-        
-        if(!empty($carro))
-        {
-            //return 'placa já existe';
-            return redirect()->back();
-        }
-        elseif (!empty($carro2))
-        {
-            return 'chassi já existe';
-        }
-        
-        else {
-        DB::insert('insert into veiculos
-          (placa, chassi, renavan, anofab , anomod, grupo) 
-          values (?,?,?,?,?,?)',
-          array ($placa, $chassi, $renavan, $anomod,$anofab,$grupo)
-          );
-        
-        
-        $movimentacao = new \r2b\Movimentacao;
-        $movimentacao->placa = $placa;
-        $movimentacao->modulo = 'veiculo';
-        $movimentacao->ativo = 1;
-        $movimentacao->data_inicio = '2016-01-01 08:00';
-        $movimentacao->km = 0;
-        $movimentacao->combustivel = 0;
-        $movimentacao->status_id =1;
-        $movimentacao->save();
-        
-         return view('/veiculo/veiculo_confirma');
-        }
-        }
+    }
 
 
 
@@ -138,16 +122,59 @@ public function atualiza(){
                 ->update(['placa'=>$placa, 'chassi'=>$chassi,'renavan'=>$renavan,
                     'anofab'=>$anofab,'anomod'=>$anomod,'grupo'=>$grupo]);        
         
-        return view('/veiculo/veiculo_confirma');
+        $veiculo = DB::select('select  * from veiculos where placa = ?',[$placa]);
+        $message = "Alterado com Sucesso";
+        return view('/veiculo/veiculo_edita')->with(array('veiculo'=>$veiculo,'message1'=>$message));
     }
-    public function apaga($placa){        
-       DB::table('veiculos')->where('placa','=',$placa)->delete();
+    
+    public function apaga($placa){ 
+        $cont = 0;
+        $movimentacoes = \r2b\Movimentacao::wherePlaca($placa)->get();
+        foreach ($movimentacoes as $movimentacoes)
+        {
+            $cont++;
+            $idmov = $movimentacoes->id;
+            $placa = $movimentacoes->placa;
+        }
+        if($cont > 1)
+        {
+            
+            return redirect()->action('VeiculoController@apagaerro',['placa'=>$placa]);
+        }
+            
+        else
+        {
+            //return $idmov;
+            DB::table('movimentacoes')->where('id','=',$idmov)->delete();
+            DB::table('veiculos')->where('placa','=',$placa)->delete();
+            return redirect()->action('VeiculoController@apagaconfirma');
+            
+        }
+            
+        return $cont;
         
-        //$veiculo = new \r2b\Veiculo;
-        //$veiculo->find($placa)->delete();
-        return view('/veiculo/veiculo_confirma');
+        DB::table('veiculos')->where('placa','=',$placa)->delete();        
     }
     
+    public function apagaconfirma() 
+    {
+        $message = "Apagado com Sucesso";
+        return view('veiculo.veiculo')->with('message',$message);
+    }    
     
+    public function apagaerro()
+    {
+        $placa = Request::input('placa'); 
+        $veiculo = DB::select('select  * from veiculos where placa = ?',[$placa]);
+        
+        $message = "Não é possível apagar, Veiculo possui Movimentações";
+        //return $cliente;
+        return view('veiculo.veiculo_edita')
+               ->with(array
+                (
+                    'veiculo'=>$veiculo,
+                    'message'=>$message                        
+                ));
+    }
 
 }
