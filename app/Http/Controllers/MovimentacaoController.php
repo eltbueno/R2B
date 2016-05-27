@@ -18,7 +18,7 @@ class MovimentacaoController extends Controller{
         $status = Request::input('status_id');  
         
         
-        
+       
         if ($placa != "" && $status == "" )         {
             
              $mov = \r2b\Movimentacao::wherePlacaAndAtivo( $placa, 1)->get(); 
@@ -41,6 +41,7 @@ class MovimentacaoController extends Controller{
         $placa = Request::input('placa');
         $datainicio = Request::input('data_inicio');
         $datafim = Request::input('data_fim');
+        $message = Request::input('message');
         
         if ($datafim == "" && $datainicio == "")
         {
@@ -89,10 +90,6 @@ class MovimentacaoController extends Controller{
             $contmov = \r2b\Contrato_Movimenta::whereMovimentacao_id($p->id)->get();
         }
         
-        
-        //return $contmov->contrato_id;
-        
-        //return $mov;
         return view('movimentacao.movimentacao_detalhe')
                 ->with(array('mov'=>$mov,
                              'placa'=>$placa,
@@ -100,7 +97,8 @@ class MovimentacaoController extends Controller{
                              // 'data_fim'=>$datafim
                                 'ativo'=>$ativo,
                                 'contmov'=>$contmov,
-                                'status'=>$status2
+                                'status'=>$status2,
+                                'message'=>$message
                             ));
     }
     
@@ -116,6 +114,8 @@ class MovimentacaoController extends Controller{
         $combustivel = Request::input('combustivel');
         $status = Request::input('status');
         $novadata = date('Y-m-d H:i' ,strtotime($data . $hora)) ;
+        
+        
         
         DB::table('movimentacoes')
                 ->where('placa',$placa)
@@ -133,9 +133,13 @@ class MovimentacaoController extends Controller{
                 array($placa,$km,$novadata,$combustivel,$status,$modulo,$ativo)
                 );
         
+        $message = 1;
         
-        
-        return redirect()->action('MovimentacaoController@detalhe',['placa'=>$placa]);
+        return redirect()->action('MovimentacaoController@detalhe',
+                            [
+                                'placa'=>$placa,
+                                'message'=>$message
+                            ]);
         //return view('movimentacao.movimentacao_confirma');
     }
     

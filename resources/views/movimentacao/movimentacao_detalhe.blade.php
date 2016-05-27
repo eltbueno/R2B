@@ -1,16 +1,26 @@
 @extends('principal')
-
 @section('mostra')
 @foreach ($ativo as $p)
 <?php 
-    echo $dataativa = date('d-m-Y H:i', strtotime($p->data_inicio));
-    echo $kmativo = $p->km;
-    echo $statusativo = $p->status->nome;
-        
+    $dataativa = date('Y-m-d H:i', strtotime($p->data_inicio));
+    $kmativo = $p->km;
+    $statusativo = $p->status->nome;
+            
   ?>
 @endforeach
 
+
+
 <script type="text/javascript">
+    window.onload = function()
+    {
+        var mensagem = "{{$message}}";
+        if (mensagem == 1)
+        {
+            alert ("Movimentação Efetuada com Sucesso!");
+        }
+        
+    };
     function busca()
     {
         // pegando o value
@@ -26,34 +36,63 @@
     }
     function nova_movimentacao()
     {
-        var placa = "{{$placa}}";  
-        var data = document.getElementById('data').value;
-        var hora = document.getElementById('hora').value;
-        var km = document.getElementById('km').value;
-        var km = parseInt(km);
-        var combustivel = document.getElementById('combustivel').value;
-        var status = document.getElementById('status').value;
-        
-        var novadata = new Date (data+ " " +hora);
-        var dataativa = new Date ("{{$dataativa}}");
+        //pegando os valores ativos do banco de dados
+        var placa = "{{$placa}}";
+        var dataativa = ("{{$dataativa}}");
         var kmativo = "{{$kmativo}}";
         
-        alert(novadata+ " datas " + dataativa);
-       
-        if (dataativa > novadata)
+        //pegando os valores do formulario
+        var data = document.getElementById('data').value;        
+        var hora = document.getElementById('hora').value;        
+        var km = document.getElementById('km').value;
+        var combustivel = document.getElementById('combustivel').value;
+        var status = document.getElementById('status').value;
+        //verifica se todos os campos foram preenchidos
+        if (data == "")
         {
-            alert('A nova data não pode ser menor que a atual: ' + dataativa);
+            alert ('Data é obrigatória!');
+        }
+        else if (hora == "")
+        {
+            alert ('Hora é obrigatória!');
+        }
+        else if (km == "")
+        {
+            alert ('KM é obrigatório!');
+        }
+        else if (combustivel == "")
+        {
+            alert ('Combustivel é obrigatório!');
+        }
+        else if (status == "")
+        {
+            alert ('Status é obrigatório!');
+        }
+        else
+        {
+            //ajustando os campos para comparações
+            var novadata = new Date (data+ " " +hora);
+            var km = parseInt(km);
+            dataativa = new Date(dataativa);
+            
+            // a nova data não pode ser menor que a data do sistema
+            if (dataativa > novadata)
+            {
+                alert('A nova data não pode ser menor que a atual: ' + dataativa);
         
-        }else
-        {
-            if (kmativo > km)
+            }else
             {
-                alert('O novo KM não pode ser menor que o atual: ' + kmativo);
-            }
-            else
-            {
-            document.novo.submit();         
-            }
+                // o novo km não pode ser menor que o km do sistema
+                if (kmativo > km)
+                {
+                    alert('O novo KM não pode ser menor que o atual: ' + kmativo);
+                }
+                else
+                {
+                    //se todos os testes passarem, envia o form.
+                    document.novo.submit();         
+                }
+            }                       
         }
     }    
 
@@ -148,6 +187,7 @@
     @else
     <form name="novo" method="get" action='/movimentacao_novo'>
     <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"
+    
         <div class="row">
             <div class="col-sm-10">
                 <div class="well">
@@ -156,6 +196,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="data">Data</label>
                                 <input type="date" class="form-control" id="data" name="data" >
+                                
                             </div>                            
                         </div>
                         <div class="col-md-4">
@@ -167,7 +208,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="km">KM</label>
-                                <input type="text" class="form-control" id="km" name="km" >
+                                <input type="text" class="form-control" id="km" name="km" value="">
                             </div>                            
                         </div>
                         <div class="col-md-4">
@@ -189,7 +230,10 @@
                                 <select class="form-control" id='status' name='status' >
                                     <option value="">Selecione</option>
                                     @foreach ($status as $p)
-                                    <option value="{{$p->id}}">{{$p->nome}}</option>
+                                        @if ($p->nome != "Locado" && $p->nome != "Retorno de Locação")
+                                            <option value="{{$p->id}}">{{$p->nome}}</option>
+                                        @else
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -198,6 +242,7 @@
                     </div>
                     
                     <input type="button" class="btn btn btn-success" value='Incluir Movimentação'onclick="nova_movimentacao()">
+                   
                 </div>
             </div>
         </div>
