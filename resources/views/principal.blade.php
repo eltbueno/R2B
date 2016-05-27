@@ -43,7 +43,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
         -->
 	<link rel="stylesheet" href="css/bootstrap.min.css" >
-	<link rel="stylesheet" href="/css/bootstrap-responsive.min.css" >
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
 	<link rel="stylesheet" href="css/style.css" >
 	<link rel="stylesheet" href="css/font-awesome.min.css" >
 	<link rel="stylesheet" href="css/style-responsive.css" >
@@ -62,15 +62,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
 		</a>
-		
-                    @if (Auth::check())
-                    <a href="{{url()}}"> {{Auth::user()->nome}} </a>
-                    
-
-                    @else
-                    <a href="{{url('auth/login')}}"> Logar</a>
-                    @endif
-                    
+                <img src="img/logo1.png">
+                @if (Auth::check())
+                <a href="{{url()}}"> {{Auth::user()->nome}} </a>
+                @else
+                <a href="{{url('auth/login')}}"> Logar</a>
+                @endif              
                 
             </div>
             
@@ -122,6 +119,8 @@
                 </section>
 		
                 <section id="corpo">
+                                       
+                    
                 @yield('conteudo')
                 </section>
 		

@@ -3678,10 +3678,9 @@ border-bottom: 1px solid transparent;
 }
 .navbar {
   position: relative;
-  min-height: 40px;
+  min-height: 50px;
   margin-bottom: 21px;
   border: 1px solid transparent;
-  margin-bottom: 0px;
 }
 .navbar:before,
 .navbar:after {

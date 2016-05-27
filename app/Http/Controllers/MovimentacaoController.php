@@ -17,13 +17,12 @@ class MovimentacaoController extends Controller{
         $placa = Request::input('placa');        
         $status = Request::input('status_id');  
         
+        
+        
         if ($placa != "" && $status == "" )         {
-            //$mov = DB::select('select * from movimentacoes where placa = ?',[$placa]); 
+            
              $mov = \r2b\Movimentacao::wherePlacaAndAtivo( $placa, 1)->get(); 
-        //    $mov = DB::table('movimentacoes')
-        //            ->where('placa','=',$placa)
-        //            ->where('ativo','=','1')
-        //            ->get();
+        
         }
         else  
         { 
@@ -32,7 +31,7 @@ class MovimentacaoController extends Controller{
         
         } 
         
-       return view('movimentacao.movimentacao_mostra')->with(array('mov'=>$mov,'status'=>$status2));
+        return view('movimentacao.movimentacao')->with(array('mov'=>$mov,'status'=>$status2));
        
     }
     
@@ -42,9 +41,6 @@ class MovimentacaoController extends Controller{
         $placa = Request::input('placa');
         $datainicio = Request::input('data_inicio');
         $datafim = Request::input('data_fim');
-        //$datainicio = date('Y-m-d H:i' ,strtotime($datainicio)) ;
-        //$datafim = date('Y-m-d H:i' ,strtotime($datafim)) ;
-        //return $datainicio . ' inicio <br> fim' . $datafim; 
         
         if ($datafim == "" && $datainicio == "")
         {
@@ -56,7 +52,7 @@ class MovimentacaoController extends Controller{
             $datainicio = date('Y-m-d H:i' ,strtotime($datafim. '- 365 days')) ;            
             //return $datafim . '<br>' . $datainicio;            
             
-            //$mov = \r2b\Movimentacao::wherePlacaAndData_inicio($placa,'>=',$datainicio)->get();
+           
             $mov = \r2b\Movimentacao::where('placa','=',$placa)
                     ->where('data_inicio','>=',$datainicio)
                     ->get(); 
@@ -139,8 +135,8 @@ class MovimentacaoController extends Controller{
         
         
         
-        
-        return view('movimentacao.movimentacao_confirma');
+        return redirect()->action('MovimentacaoController@detalhe',['placa'=>$placa]);
+        //return view('movimentacao.movimentacao_confirma');
     }
     
 }

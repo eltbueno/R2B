@@ -68,43 +68,35 @@
         
 @else 
 <div class="well">
-<table class="table table-striped table-bordered table-hover"> 
-    <col width="30px">
-    <col width="30px">
-    <col width="200px">
-    <col width="200px">
-    <col width="100px">
-    <col width="100px">
-    <tr>
-        <td></td>
-        <td><b>Placa</b></td>
-        <td><b>Chassi</b></td>
-        <td><b>Ano Fabricação</b></td>
-        <td><b>Ano Modelo</td>
-        <td><b>Grupo</td>         
-    </tr> 
+    <table class="table table-striped table-bordered table-hover"> 
+        <tr>
+            <td></td>
+            <td><b>Placa</b></td>
+            <td><b>Chassi</b></td>
+            <td><b>Ano Fabricação</b></td>
+            <td><b>Ano Modelo</td>
+            <td><b>Grupo</td>         
+        </tr> 
 
-    
-    @foreach ($veiculos as $p)
-    <tr>
-        <td>
-            <form action="veiculo_edita" method="get">
-                <input name="placa" type="hidden" value="{{$p->placa}}">                
-                <button class="btn" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-            </form>            
-        </td>   
-        <td>{{ $p->placa}} </td>    
-        <td>{{ $p->chassi }}</td>
-        <td>{{ $p->anofab }}</td>
-        <td>{{ $p->anomod }}</td>
-        <td>{{ $p->grupo }}</td>   
-    </tr>
-    @endforeach 
-       
-        
-</table>
+
+        @foreach ($veiculos as $p)
+        <tr>
+            <td>
+                <form action="veiculo_edita" method="get">
+                    <input name="placa" type="hidden" value="{{$p->placa}}">                
+                    <button class="btn" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </form>            
+            </td>   
+            <td>{{ $p->placa}} </td>    
+            <td>{{ $p->chassi }}</td>
+            <td>{{ $p->anofab }}</td>
+            <td>{{ $p->anomod }}</td>
+            <td>{{ $p->grupo }}</td>   
+        </tr>
+        @endforeach 
+    </table>
 </div>
 
- @endif
+@endif
 @stop
 
