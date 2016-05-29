@@ -35,9 +35,10 @@ Route::post('/auth/register', 'Auth\AuthController@postRegister');
 
 
 Route::post('/usuario_busca', 'UserController@busca');
-Route::get('/usuario', function () {
-    return view('auth.usuario');
-});
+Route::get('/usuario','UserController@usuario' );
+Route::get('/usuario_detalhe','UserController@detalhe');
+Route::post('/usuario_atualiza','UserController@atualiza');
+Route::get('/usuario_apaga/{id}','UserController@apaga');
 
 
 

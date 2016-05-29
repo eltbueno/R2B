@@ -63,7 +63,7 @@
                                    
                     <input type='submit' class="btn btn btn-success" value='Buscar'/>
                     @can('comercial')
-                    <input type="button" class="btn btn-primary" value='Novo Cliente'onclick="novo()">
+                        <input type="button" class="btn btn-primary" value='Novo Cliente'onclick="novo()">
                     @endcan
 		</div>		
             </div>
@@ -79,12 +79,7 @@
 @else 
 <div class="well">
 <table class="table table-striped table-bordered table-hover"> 
-    <col width="30px">
-    <col width="30px">
-    <col width="200px">
-    <col width="200px">
-    <col width="100px">
-    <col width="100px">
+    
     <tr>
         <td></td>
         <td><b>Codigo</b></td>

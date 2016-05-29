@@ -12,10 +12,7 @@
             document.getElementById("renavan").readOnly = false;
             document.getElementById("anomod").readOnly = false;
             document.getElementById("anofab").readOnly = false;
-            
-            //altera o estado do select modo 1
             document.getElementById("grupo").disabled = false;
-            
         }
         function apaga(placa)
         {

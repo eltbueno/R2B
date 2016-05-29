@@ -5,8 +5,7 @@
 <div class="container">
     <form  method="post" action="/cliente_adiciona">
         <input type="hidden" name="_token" value="{{{ csrf_token()}}}" />
-        <h2>Novo Cliente</h2>
-     
+        <h2>Novo Cliente</h2>     
 
         <div class="row">
             <div class="col-sm-10">

@@ -7,7 +7,7 @@
             {{Session::get('message')}}
         @endif
     </div>
-    <form method="post" action="{{url('usuario_salva')}}">
+    <form method="post" action="{{url('usuario_edita')}}">
         {{csrf_field()}}
         <h2>Novo Usuário</h2>
         <div class="row">

@@ -147,6 +147,8 @@ public function atualiza(){
             //return $idmov;
             DB::table('movimentacoes')->where('id','=',$idmov)->delete();
             DB::table('veiculos')->where('placa','=',$placa)->delete();
+                     
+            //usando redirect pq senão cai fora do layout principal
             return redirect()->action('VeiculoController@apagaconfirma');
             
         }

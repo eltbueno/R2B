@@ -186,7 +186,7 @@
         Não pode Movimentar carro locado
     @else
     <form name="novo" method="get" action='/movimentacao_novo'>
-    <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"
+    <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"/>
     
         <div class="row">
             <div class="col-sm-10">
@@ -249,51 +249,5 @@
     </form>
     @endif
 </div>
-
-<!--
-@if ($statusativo == "Locado")
-    Não pode Movimentar carro locado
-@else
-<form name="novo2" method="get" action='/movimentacao_novo'>
-    <input style="display: none" type="text" id='placa' name='placa' value="{{$placa}}"   
-    <div id="menu2">        
-    <ul>     
-        <li><input type="date" id='data' name='data' </li>
-        <li><input type="time" id='hora' name='hora' ></li>
-        <li>KM <input type="text" id='km' name='km' ></li>
-        
-        <li>Combustivel
-            <select id="combustivel" name="combustivel">
-                <option value=""></option>
-                <option value="0">Reserva</option>
-                <option value="1">1/4</option>
-                <option value="2">2/4</option>
-                <option value="3">3/4</option>
-                <option value="4">4/4</option>
-            </select>
-        </li>
-        <li>Status 
-            <select id='status' name='status' >
-                <option value=""></option>
-                @foreach ($status as $p)
-                <option value="{{$p->id}}">{{$p->nome}}</option>
-                @endforeach
-            </select>
-        </li>
-    </ul>
-    </div>
     
-    <!-- Criar uma função para validar data e hora, tirar do javascript, usar ele
-    só para exibir a mensagem de erro
-    
-    
-</form>
--->
-
-
-
-@endif
-
-
-
 @stop
