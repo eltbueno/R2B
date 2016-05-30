@@ -62,7 +62,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
 		</a>
-                <img src="img/logo1.png">
+                <img src="img/logo.png">
                 @if (Auth::check())
                 <a href="{{url()}}"> {{Auth::user()->nome}} </a>
                 @else
