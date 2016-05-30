@@ -184,12 +184,6 @@
                             </div>			
                         </div>
                     </div>
-                
-                    
-                    
-                    
-                   
-                 
                     <div class="row">
                         <div class="col-md-4">
                             <div id="mostra">
@@ -214,6 +208,5 @@
         </div> 
     </form>
 </div>
-@endif   
-
+@endif 
 @stop

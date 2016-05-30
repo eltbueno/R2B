@@ -20,8 +20,7 @@
 </script>
 
 <div class="container">
-    <h2>Movimentações</h2>
-    
+    <h2>Movimentações</h2>    
     <form name="envia" method="get" action="/movimentacao_busca">            
         <div class="row">
             <div class="col-sm-10">

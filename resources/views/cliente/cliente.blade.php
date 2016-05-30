@@ -78,8 +78,7 @@
         
 @else 
 <div class="well">
-<table class="table table-striped table-bordered table-hover"> 
-    
+<table class="table table-striped table-bordered table-hover">     
     <tr>
         <td></td>
         <td><b>Codigo</b></td>
@@ -87,9 +86,7 @@
         <td><b>Endereço</b></td>
         <td><b>Estado</td>
         <td><b>Cidade</td>         
-    </tr> 
-
-    
+    </tr>
     @foreach ($clientes as $p)
     <tr>
         <td>
@@ -105,11 +102,8 @@
         <td>{{ $p->cli_cidade }}</td>   
     </tr>
     @endforeach 
-       
-        
 </table>
 </div>
-
- @endif
+@endif
 @stop
 

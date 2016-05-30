@@ -8,11 +8,13 @@ class ClienteController extends Controller{
         return view('cliente.cliente');
     }
     public function busca (){        
-        //incluir uma função aqui para verificar os valores, depois faz a busca
+        
                 
         $id = Request::input('id');        
         $nome = Request::input('cli_nome');
         $tipo = Request::input('cli_tipo');
+        // busca abaixo é para envio dos dados para contrato, não tire
+        $contrato = Request::input('contrato');
                    
         if ($id == "" && $nome == "" && $tipo == "" )
         {  
@@ -71,7 +73,16 @@ class ClienteController extends Controller{
                 ->get();                                      
         }           
             
-        return view('cliente/cliente')->with('clientes',$clientes);
+        
+        if ($contrato == "")
+        {
+            return view('cliente/cliente')->with('clientes',$clientes);
+            //return view('cliente/cliente_mostra')->with('clientes',$clientes);
+        }
+        else
+        {
+            return view('contrato.busca_cli')->with('clientes',$clientes);
+        }
         
         
     }

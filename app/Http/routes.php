@@ -148,8 +148,8 @@ Route::get('/contrato_retira', 'ContratoController@retiracarro');
 
 
 
-Route::get('/contrato_sai/{placa}', 'ContratoController@sai');
-Route::post('/contrato_sai/salva', 'ContratoController@carrosai');
+Route::get('/contrato_sai', 'ContratoController@sai');
+Route::post('/contrato_salva', 'ContratoController@carrosai');
 
 Route::get('/busca_cli', function () 
 {

@@ -17,6 +17,6 @@ class Contrato extends Model
     
     public function user()
     {
-        return $this->hasOne('r2b\User');
+        return $this->belongsTo('r2b\User');
     }
 }

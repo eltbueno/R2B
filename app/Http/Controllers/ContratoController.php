@@ -8,11 +8,20 @@ class ContratoController extends Controller{
     }
     public function contrato()
     {
-        return view('contrato.contrato');
+        return view('contrato.contrato')->with('message',0);
     }
     public function novo()
     {
-        return view('contrato.contrato_novo');
+        
+        $usuarios = \r2b\User::All();
+        
+        return view('contrato.contrato_novo')
+                ->with(array(       
+                    
+                    
+                    'usuarios'=>$usuarios
+                
+                ));
     }
     
     public function busca (){        
@@ -21,7 +30,7 @@ class ContratoController extends Controller{
         $id = Request::input('id');        
         $cli_id = Request::input('cliente_id');
         $cli_nome = Request::input('cliente_nome');
-                   
+               
         if ($id == "" && $cli_id == "" && $cli_nome == "" )
         {  
             $contratos = \r2b\Contrato::All();            
@@ -37,14 +46,13 @@ class ContratoController extends Controller{
         }
         elseif ($id == "" && $cli_id == "" && $cli_nome != "" ) 
         {
-           // $contratos = \r2b\Contrato::whereCliente('like','%'.$cli_nome.'%') ->get(); 
+            //$contratos = \r2b\Contrato::where('cliente->nome','like','%'.$cli_nome.'%') ->get(); 
             
             
-            $contratos = \r2b\Contrato::with(['cliente' => function ($query) {
-                $nomecli = $cli_nome;
-                $query->where('cli_nome', 'like', '%'.$nomecli .'%');
-            }])->get();
-            
+            $contratos = \r2b\Contrato::with(['cliente' => function ($query) {                
+                global $cli_nome;
+                $query->where('cli_nome', 'like', '%'.$cli_nome .'%');
+            }])->get();           
             
         }
         
@@ -60,14 +68,16 @@ class ContratoController extends Controller{
         {
         $id = Request::input('id'); 
         $contrato = \r2b\Contrato::whereId($id)->get();
-        
-        //return $contrato;
         $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($id)->get();
-        //$veiculos = DB::table('contrato_movimenta')
-                //->where('contrato_id','=',$id)
-                //->get();
-        //return  $id;
-        return view('contrato.contrato_edita')->with(array('contrato'=>$contrato,'veiculos'=>$veiculos));
+        $message = Request::input('message');
+        $usuarios = \r2b\User::All();
+        return view('contrato.contrato_edita')
+                ->with(array(
+                    'contrato'=>$contrato,
+                    'veiculos'=>$veiculos,
+                    'message'=>$message,
+                    'usuarios'=>$usuarios
+                ));
         }
 
 
@@ -97,13 +107,22 @@ class ContratoController extends Controller{
           
         $contrato = \r2b\Contrato::whereId($id)->get();
         $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($id)->get();
+        $message = 3;
+        $usuarios = \r2b\User::All();
+        return view('contrato.contrato_edita')
+                ->with(array(
+                    'contrato'=>$contrato,
+                    'veiculos'=>$veiculos,
+                    'message'=>$message,
+                    'usuarios'=>$usuarios
+                ));
         
         
         
         
         //return view('contrato.contrato_edita')->with('contrato',$contrato);
-        return view('contrato.contrato_edita')->with(array('contrato'=>$contrato,'veiculos'=>$veiculos));
-        }
+        //return view('contrato.contrato_edita')->with(array('contrato'=>$contrato,'veiculos'=>$veiculos));
+    }
 
 
 
@@ -115,11 +134,13 @@ public function atualiza(){
         $user = Request::input('user_id');
         $cliente = Request::input('cliente_id');
         $vigencia = Request::input('vigencia');
+        //return $id;
         $taxaadmin = Request::input('taxaadmin');
         $taxamulta = Request::input('taxamulta');
         $vencimento = Request::input('vencimento');
         $vigencia = date('Y-m-d' ,strtotime($vigencia)) ;
         
+        //return $vigencia;
         \r2b\Contrato::where('id',$id)
             ->update(
             [
@@ -133,9 +154,19 @@ public function atualiza(){
             ]
             );
           
-        $contrato = DB::select('select  * from contratos where id = ?',[$id]);
+        $contrato = \r2b\Contrato::whereId($id)->get();
+        $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($id)->get();
+        $message = 2;
+        $usuarios = \r2b\User::All();
         
-        return view('contrato.contrato_edita')->with('contrato',$contrato);
+        return view('contrato.contrato_edita')
+                ->with(array(
+                    'contrato'=>$contrato,
+                    'message'=>$message,
+                    'veiculos'=>$veiculos,
+                    'usuarios'=>$usuarios
+                
+                ));     
         }
     
     
@@ -272,7 +303,7 @@ public function atualiza(){
     }
     public function retiracarro()
     {
-        $contrato = Request::input('contrato');
+        $contratoid = Request::input('contrato');
         $movimentacao = Request::input('movimentacao');
         
         //return $contrato;       
@@ -282,15 +313,16 @@ public function atualiza(){
          $placa = $p->placa;
         }
         
-        //return $placa;
+        
         DB::table('contrato_movimenta')
-                ->where('contrato_id', '=', $contrato)
+                ->where('contrato_id', '=', $contratoid)
                 ->where('movimentacao_id', '=', $movimentacao)  
                 ->delete();
         
         $movapag = new \r2b\Movimentacao;
         $movapag->find($movimentacao)->delete();
         
+        //return "chegou aqui";
         $movmuda = \r2b\Movimentacao::wherePlaca($placa)->get();
         foreach ($movmuda as $movmuda)
         {
@@ -308,15 +340,34 @@ public function atualiza(){
                     'combustivelfim'=>""
                     ]);
         
-        //$novmuda 
-        return redirect('/contrato');
-    }
-    public function sai($id) {
+        $contrato = \r2b\Contrato::whereId($contratoid)->get();
+        $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($contratoid)->get();
+        $message = 4;
+        $usuarios = \r2b\User::All();
         
-        $movatual = \r2b\Movimentacao::whereId($id)->get();
+        return view('contrato.contrato_edita')
+                ->with(array(
+                    'contrato'=>$contrato,
+                    'message'=>$message,
+                    'veiculos'=>$veiculos,
+                    'usuarios'=>$usuarios
+                
+                ));     
+        
+    }
+    public function sai() {
+        
+        $movid = Request::input('movimentacao');
+        $contid = Request::input('contrato');
+        
+        $movatual = \r2b\Movimentacao::whereId($movid)->get();
         
         //return $movatual;
-        return view('contrato.contrato_sai')->with(array('movatual'=>$movatual));
+        return view('contrato.contrato_sai')
+                ->with(array(
+                    'movatual'=>$movatual,
+                    'contid'=>$contid
+                ));
         
     }
     
@@ -337,6 +388,7 @@ public function atualiza(){
         $hora = Request::input('hora');
         $km = Request::input('km');
         $combustivel = Request::input('combustivel');
+        $contid = Request::input('contid');
         
         //$retorno = ;
         
@@ -361,11 +413,19 @@ public function atualiza(){
         
         
         
+        $contrato = \r2b\Contrato::whereId($contid)->get();
+        $veiculos = \r2b\Contrato_Movimenta::whereContrato_id($contid)->get();
+        $message = 5;
+        $usuarios = \r2b\User::All();
         
-        return redirect('/contrato');
-        
-        
-        
+        return view('contrato.contrato_edita')
+                ->with(array(
+                    'contrato'=>$contrato,
+                    'message'=>$message,
+                    'veiculos'=>$veiculos,
+                    'usuarios'=>$usuarios
+                
+                ));
         
     }
 

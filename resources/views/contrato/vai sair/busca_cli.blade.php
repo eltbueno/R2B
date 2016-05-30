@@ -1,15 +1,13 @@
 
 <script type="text/javascript">
-    function SetName(d1, d2) 
-    {
-        if (window.opener != null && !window.opener.closed) 
-        {
+    function SetName(d1, d2) {
+        if (window.opener != null && !window.opener.closed) {
                        
-           var nome = window.opener.document.getElementById("cli_nome");
-           var id = window.opener.document.getElementById("cliente_id");
+           var nome_cli = window.opener.document.getElementById("nome_cli");
+           var cliente_id = window.opener.document.getElementById("cliente_id");
            
-           nome.value = d2 ; 
-           id.value = d1; 
+           nome_cli.value = d2; 
+           cliente_id.value = d1; 
         }
         window.close();
     }

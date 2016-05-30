@@ -41,8 +41,14 @@ body {
 #edita{
 	display: none ;
 }
+#basico{
+	display: block ;
+}
 #mostra{
 	display: block;
+}
+#veiculos{
+	display: none ;
 }
 a {
   background: transparent;
