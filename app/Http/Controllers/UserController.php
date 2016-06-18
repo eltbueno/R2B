@@ -9,10 +9,10 @@ use Validator;
 
 class UserController extends Controller{
     // comentado para liberar o cadastro de usuario
-    //public function __construct() {
-    //    $this->middleware('auth');
+    public function __construct() {
+        $this->middleware('auth');
         
-    //}
+    }
     
     public function principal() {
         return view('/principal');
@@ -58,7 +58,7 @@ class UserController extends Controller{
                 );
             
         $usuario = DB::select('select  * from users where id = ?',[$id]);
-        return ("cadastrou o user");
+        //return ("cadastrou o user");
         $message = 3;
         return view('auth.usuario_edita')->with(array('usuario'=>$usuario,'message'=>$message)); 
         }
