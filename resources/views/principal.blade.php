@@ -79,7 +79,9 @@
 			<li><a href="/veiculo"><i class="icon-truck"></i><span class="hidden-tablet"> Veiculos</span></a></li>
 			<li><a href="/movimentacao"><i class="icon-refresh"></i><span class="hidden-tablet"> Movimentação</span></a></li>
 			<li><a href="/contrato"><i class="icon-folder-open-alt"></i><span class="hidden-tablet"> Contrato</span></a></li>
+                        <!--
 			<li><a href="/configuracao"><i class="icon-cog"></i><span class="hidden-tablet"> Configuração</span></a></li>
+                        -->
 			@can('admin')
                         <li><a href="/usuario"><i class="icon-user"></i><span class="hidden-tablet"> Usuários</span></a></li>
                         @endcan

@@ -18,10 +18,12 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest', ['except' => 'getLogout']);
-    }
+    
+    // comentado para libera o cadastro de usuario
+    //public function __construct()
+    //{
+    //    $this->middleware('guest', ['except' => 'getLogout']);
+    //}
 
     public function postRegister(Request $request) {
         //return 'aqui deu certo';
