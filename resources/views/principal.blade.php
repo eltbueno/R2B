@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<!-- Pagina principal, vai ser usada de base para as demais-->
     <head>
         <!-- start: JavaScript -->
         <script src="js/jquery-1.9.1.min.js"></script>
@@ -33,23 +34,13 @@
         <script src="js/retina.js"></script>
         <script src="js/custom.js"></script>
         <!-- end: JavaScript-->
-        <meta charset="utf-8">
-	
-        <!--  pode sair essa parte ???
-	<meta name="description" content="Bootstrap Metro Dashboard">
-	<meta name="author" content="Dennis Ji">
-	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-        -->
-	<link rel="stylesheet" href="css/bootstrap.min.css" >
+        <meta charset="utf-8">	
+        <link rel="stylesheet" href="css/bootstrap.min.css" >
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" >
 	<link rel="stylesheet" href="css/style.css" >
 	<link rel="stylesheet" href="css/font-awesome.min.css" >
 	<link rel="stylesheet" href="css/style-responsive.css" >
-        <!--
-	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'  type='text/css'>
--->
+        
     </head>
 
 <body>
@@ -103,14 +94,6 @@
             </div>
             <!-- end: Main Menu -->
             
-            <!-- essa parte não faz nada ?
-            <noscript>
-		<div class="alert alert-block span10">
-                    <h4 class="alert-heading">Warning!</h4>
-                    <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
-		</div>
-            </noscript>
-            -->
             <!-- start: Content -->
             <div id="content" class="span10">
 			
@@ -133,23 +116,6 @@
             <!-- end: Content -->
         </div>
     </div>
-    	
-    <!-- não sei o que isso faz
-    <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="http://themifycloud.com">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
-    <div class="clearfix"></div>
-    -->
-	
-	
-	
-    
-	
     
     <div class="navbar-inner">
         <footer>
