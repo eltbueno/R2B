@@ -240,9 +240,9 @@
                         </div>
                     
                     </div>
-                    
+                    @can('operacional')
                     <input type="button" class="btn btn btn-success" value='Incluir Movimentação'onclick="nova_movimentacao()">
-                   
+                   @endcan
                 </div>
             </div>
         </div>
