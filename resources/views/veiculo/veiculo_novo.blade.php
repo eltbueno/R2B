@@ -12,14 +12,7 @@
             <div class="col-sm-10">
                 <div class="well">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <!-- Arrumar o tamanho dos campos -->
-                                <label class="control-label" for="data">Data</label>
-                                <input value="{{Input::old('data')}}" type="date" class="form-control" id="data" name="data">
-                                <div class="text-danger">{{$errors->formveiculo->first('data')}}</div>
-                            </div>
-                        </div>
+                        
                         <div class="col-md-4">
                             <div class="form-group">
                                 <!-- Arrumar o tamanho dos campos -->
