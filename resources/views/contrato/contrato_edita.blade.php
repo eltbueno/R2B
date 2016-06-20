@@ -214,7 +214,7 @@
                         <form method="get" action="contrato_veiculo">
                             <input type="hidden" name="id" id="id" value='{{$p->id}}'>
                                 @can('comercial')
-                                <button type="submit">Incluir novo {{$p->id}}</button>
+                                <button type="submit">Novo Veículo</button>
                                 @endcan
                         </form>
                         <table border='1'>

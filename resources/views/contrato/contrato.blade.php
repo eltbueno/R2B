@@ -52,6 +52,7 @@
             <td>Detalhes</td>
             <td><b>Codigo do Contrato</b></td>
             <td><b>Nome do Cliente</b></td>        
+            <td><b>Fim do Contrato</b></td>
         </tr>
         @foreach ($contratos as $p)
         <tr>
@@ -62,7 +63,9 @@
                 </form>            
             </td>   
             <td>{{ $p->id}} </td>    
-            <td>{{$p->cliente->cli_nome }}</td>              
+            <td>{{$p->cliente->cli_nome }}</td> 
+            
+            <td>{{date('d-m-Y', strtotime($p->vigencia))}}</td>
         </tr>
         @endforeach 
     </table>
